@@ -19,11 +19,11 @@ Contamos con una estructura organizada para garantizar el éxito en la **Feria G
 ---
 
 ## 🎮 Sobre el Juego
-**Luces y Sombras** es un juego de plataformas y acción desarrollado en **Godot Engine**. El jugador debe enfrentarse a desafíos en entornos dinámicos donde la gestión de la luz es vital para la supervivencia.
+**Luces y Sombras** es un juego de plataformas y acción desarrollado en **Godot Engine**. El jugador debe enfrentarse a distintas entidades en entornos estáticos donde saber esquivar a los enemigos y purificarlos es la clave para avanzar de nivel.
 
 ### Mecánicas Principales:
-* **Combate de Luces:** Inspirado en el uso de la linterna de *Candy n Curses*.
-* **Movimiento Ágil:** Saltos precisos y dash para esquivar enemigos.
+* **Combate automático:** Inspirado en el uso de la linterna de *Candy n Curses*.
+* **Movimiento Ágil:** Movimiento en 4 direcciones para esquivar y narutalizar a los enemigos.
 * **Niveles Progresivos:** Dificultad escalable diseñada para la sustentación final.
 
 ---
@@ -35,15 +35,16 @@ Para ejecutar el proyecto localmente o para revisión en el laboratorio:
 2.  **Lenguaje:** GDScript.
 3.  **Repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/luces-y-sombras.git](https://github.com/tu-usuario/luces-y-sombras.git)
+    https://github.com/Artworitwo/Luces-y-sombras.git
     ```
 
 ---
 
 ## 📅 Cronograma (Hacia la Feria Gamer)
 - [x] Definición de roles y concepto inicial.
-- [ ] Implementación de mecánicas base (Movimiento y Luz).
-- [ ] Diseño de niveles para el primer bioma.
+- [ ] Implementación de mecánicas base (Movimiento y combate).
+- [ ] Diseño del mapa de los niveles.
+- [ ] Diseño de enemigos y bosses
 - [ ] **18-22 de Mayo:** Semana de sustentación de proyectos.
 - [ ] **28 de Mayo:** Presentación final en la **Feria Gamer 2026**.
 
