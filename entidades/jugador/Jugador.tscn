@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://gd8be4axf4cd"]
+
+[ext_resource type="Script" uid="uid://l8gdybhpsny6" path="res://entidades/jugador/Jugador.gd" id="1_gfd2q"]
+[ext_resource type="Texture2D" uid="uid://bkksuvu8evmex" path="res://assets/Orc-Walk.png" id="2_sk4nk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vho56"]
+radius = 46.54
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7yqy"]
+size = Vector2(40, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2jym"]
+atlas = ExtResource("2_sk4nk")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byeu4"]
+atlas = ExtResource("2_sk4nk")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb4fe"]
+atlas = ExtResource("2_sk4nk")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x243"]
+atlas = ExtResource("2_sk4nk")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7b7x"]
+atlas = ExtResource("2_sk4nk")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p80vc"]
+atlas = ExtResource("2_sk4nk")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u13i"]
+atlas = ExtResource("2_sk4nk")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irj4l"]
+atlas = ExtResource("2_sk4nk")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ekfw"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2jym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byeu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb4fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x243")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7b7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p80vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u13i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irj4l")
+}],
+"loop": true,
+"name": &"Trollcito",
+"speed": 5.0
+}]
+
+[node name="Jugador" type="CharacterBody2D" unique_id=634313891]
+script = ExtResource("1_gfd2q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=806345465]
+shape = SubResource("CircleShape2D_vho56")
+debug_color = Color(0.9490196, 0, 0.5686275, 0.19215687)
+metadata/_edit_group_ = true
+
+[node name="HitBoxAtaque" type="Area2D" parent="." unique_id=1230768757]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxAtaque" unique_id=2032428601]
+position = Vector2(54, 0)
+shape = SubResource("RectangleShape2D_u7yqy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=65774124]
+position = Vector2(0, 15)
+scale = Vector2(4.5299997, 4.1749997)
+sprite_frames = SubResource("SpriteFrames_3ekfw")
+animation = &"Trollcito"
+autoplay = "Trollcito"
+frame = 7
+frame_progress = 0.98443615
+speed_scale = 2.3
