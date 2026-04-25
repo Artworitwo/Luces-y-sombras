@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://gd8be4axf4cd"]
 
-[ext_resource type="Script" uid="uid://l8gdybhpsny6" path="res://entidades/jugador/Jugador.gd" id="1_gfd2q"]
-[ext_resource type="Texture2D" uid="uid://bkksuvu8evmex" path="res://assets/Orc-Walk.png" id="2_sk4nk"]
+[ext_resource type="Script" uid="uid://l8gdybhpsny6" path="res://scripts/entities/player/Player.gd" id="1_gfd2q"]
+[ext_resource type="Texture2D" uid="uid://bkksuvu8evmex" path="res://visual assets/Orc-Walk.png" id="2_sk4nk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vho56"]
 radius = 46.54
@@ -74,7 +74,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Jugador" type="CharacterBody2D" unique_id=634313891]
+[node name="Player" type="CharacterBody2D" unique_id=634313891]
+collision_mask = 6
 script = ExtResource("1_gfd2q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=806345465]
@@ -82,9 +83,11 @@ shape = SubResource("CircleShape2D_vho56")
 debug_color = Color(0.9490196, 0, 0.5686275, 0.19215687)
 metadata/_edit_group_ = true
 
-[node name="HitBoxAtaque" type="Area2D" parent="." unique_id=1230768757]
+[node name="HitBoxAttack" type="Area2D" parent="." unique_id=1230768757]
+collision_layer = 0
+collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxAtaque" unique_id=2032428601]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxAttack" unique_id=2032428601]
 position = Vector2(54, 0)
 shape = SubResource("RectangleShape2D_u7yqy")
 
@@ -97,3 +100,5 @@ autoplay = "Trollcito"
 frame = 7
 frame_progress = 0.98443615
 speed_scale = 2.3
+
+[connection signal="body_entered" from="HitBoxAttack" to="." method="_on_hit_box_attack_body_entered"]
