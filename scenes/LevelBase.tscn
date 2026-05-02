@@ -12,6 +12,8 @@ size = Vector2(30, 990)
 size = Vector2(1200, 30)
 
 [node name="LevelBase" type="Node2D" unique_id=700040340]
+position = Vector2(-326, 4)
+scale = Vector2(0.9023314, 0.7223171)
 
 [node name="Player1" parent="." unique_id=634313891 groups=["players"] instance=ExtResource("1_5vqh1")]
 position = Vector2(516, 187)

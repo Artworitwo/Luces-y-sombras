@@ -1,0 +1,41 @@
+"""Aclaraciónes, aquí estan los vértices del
+grafo, y funciona provisionalmente, ajustes
+que deben hacerse son que los nodos puedan
+activarse con un 'costo', y por supuesto que
+hagan cierto efecto en el jugador, esto
+último sería ideal implementarlo en la función
+'_on_button_pressed'"""
+extends Node
+class_name Perk
+
+var metric
+var neighbours = []
+var perkType
+var perkCode:int
+var locked = true
+var button:Button
+func _init(v):
+	metric = v
+	perkCode = randi_range(1, 3)
+	
+	match perkCode:
+		1:
+			perkType = "Life"
+		2:
+			perkType = "Speed"
+		3:
+			perkType = "Dmg"
+			
+
+func unlock():
+	self.locked = true
+	for neighbour in self.neighbours:
+		neighbour.locked = false
+		
+func _on_button_pressed():
+	if(self.locked==false):
+		self.unlock()
+		
+func addButton(boton:Button):
+	button = boton
+	button.pressed.connect(_on_button_pressed.bind())

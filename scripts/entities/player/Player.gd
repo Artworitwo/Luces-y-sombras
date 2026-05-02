@@ -42,6 +42,10 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -660.0
 var direction = 1
 
+var max_health = 5
+var health = 5
+var perkTreeRoot
+
 # Se ejecuta acorde con la cantidad de fotogramas que soporte tu 
 # computador, desde 1 hasta 400. útil para cosas de renderizado o gráfico
 func _process(delta: float) -> void:
@@ -76,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Manejo para bajar plataforma
 	if Input.is_action_just_pressed(down_input) and is_on_floor():
-		position.y +=1
+		position.y +=3
 		
 	# Cambiar la dirección de movimiento y la de HitBoxAtaque 
 	if Input.is_action_just_pressed(left_input):
