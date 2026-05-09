@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dwcnrny4rfa58"]
+
+[ext_resource type="PackedScene" uid="uid://c1nw6g17b4wvy" path="res://scenes/entities/enemies/BasicEnemy.tscn" id="1_6stvn"]
+
+[node name="CharacterBody2D" unique_id=431144609 instance=ExtResource("1_6stvn")]

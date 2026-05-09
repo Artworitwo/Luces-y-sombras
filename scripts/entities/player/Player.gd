@@ -37,13 +37,15 @@ var jump_input:String
 @export
 var down_input:String
 
+@export var damage:int
 # Variables de movimiento
 const SPEED = 300.0
-const JUMP_VELOCITY = -660.0
+const JUMP_VELOCITY = -935.0
 var direction = 1
 
 var max_health = 5
 var health = 5
+
 var perkTreeRoot
 
 # Se ejecuta acorde con la cantidad de fotogramas que soporte tu 
@@ -60,7 +62,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# Añadir gravedad
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += 2000 * delta
 		
 	# Cambio de dirección automático cuando choca contra la pared	
 	if is_on_wall():
@@ -100,6 +102,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func lose_health() -> void:
+	health =- 2
+
 # Una señal es una funcion que a diferencia de proccess (que se activa
 # dependiendo de los fotograms de tu pc) y proccess_physic (se activa
 # 60 veces por segundo), esta se activa cuando hace lo que dice 
@@ -111,8 +116,8 @@ func _physics_process(delta: float) -> void:
 func _on_hit_box_attack_body_entered(body: Node2D) -> void:
 	print("colision con: ", body)
 	# Preguntamos si el cuerpo con el que chocamos tiene la "camiseta" de Enemigo
-	if body.is_in_group("Enemigo"):
-		print("¡Le pegaste a un Bully!")
+	if body.is_in_group("enemies"):
+		body.receive_damage()
 		# Aquí luego le dirás al enemigo que se desactive o se purifique
 		# body.purificar()
 		

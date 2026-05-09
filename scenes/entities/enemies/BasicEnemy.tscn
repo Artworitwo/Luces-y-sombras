@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c1nw6g17b4wvy"]
+
+[ext_resource type="Script" uid="uid://ca1n0q3ss22ot" path="res://scripts/entities/enemies/basicEnemy.gd" id="1_84j8r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84j8r"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"spawn",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=431144609 groups=["enemies"]]
+script = ExtResource("1_84j8r")
+
+[node name="Timer" type="Timer" parent="." unique_id=1637640577]
+process_callback = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=696892915]
+sprite_frames = SubResource("SpriteFrames_84j8r")
+animation = &"death"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

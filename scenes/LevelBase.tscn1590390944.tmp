@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cggdetm6w45uf"]
+
+[ext_resource type="PackedScene" uid="uid://gd8be4axf4cd" path="res://scenes/Player.tscn" id="1_5vqh1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbyki"]
+size = Vector2(1200, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcb0y"]
+size = Vector2(30, 990)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u45fm"]
+size = Vector2(1200, 30)
+
+[node name="LevelBase" type="Node2D" unique_id=700040340]
+position = Vector2(-326, 4)
+scale = Vector2(0.9023314, 0.7223171)
+
+[node name="Player1" parent="." unique_id=634313891 groups=["players"] instance=ExtResource("1_5vqh1")]
+position = Vector2(516, 187)
+right_input = "right1"
+left_input = "left1"
+jump_input = "jump1"
+down_input = "down1"
+
+[node name="Player2" parent="." unique_id=1823252324 groups=["players"] instance=ExtResource("1_5vqh1")]
+position = Vector2(518, 424)
+right_input = "right2"
+left_input = "left2"
+jump_input = "jump2"
+down_input = "down2"
+
+[node name="Obstacules" type="Node2D" parent="." unique_id=1633480042]
+
+[node name="ceiling" type="StaticBody2D" parent="Obstacules" unique_id=732702799]
+position = Vector2(960, 15)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacules/ceiling" unique_id=1758804550]
+shape = SubResource("RectangleShape2D_vbyki")
+
+[node name="WallRight" type="StaticBody2D" parent="Obstacules" unique_id=1705539840]
+position = Vector2(1545.9951, 495.6272)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacules/WallRight" unique_id=2050038793]
+shape = SubResource("RectangleShape2D_bcb0y")
+
+[node name="WallLeft" type="StaticBody2D" parent="Obstacules" unique_id=1247837619]
+position = Vector2(376.8017, 515.0093)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacules/WallLeft" unique_id=41865108]
+shape = SubResource("RectangleShape2D_bcb0y")
+
+[node name="Floor1" type="StaticBody2D" parent="Obstacules" unique_id=1227702030]
+position = Vector2(960, 975)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacules/Floor1" unique_id=2136381665]
+shape = SubResource("RectangleShape2D_u45fm")
+
+[node name="Floor2" type="StaticBody2D" parent="Obstacules" unique_id=1737546049]
+position = Vector2(960, 750)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacules/Floor2" unique_id=1674927993]
+shape = SubResource("RectangleShape2D_u45fm")
+one_way_collision = true
+
+[node name="Floor3" type="StaticBody2D" parent="Obstacules" unique_id=1839496218]
+position = Vector2(960, 525)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacules/Floor3" unique_id=117861992]
+shape = SubResource("RectangleShape2D_u45fm")
+one_way_collision = true
+
+[node name="Floor4" type="StaticBody2D" parent="Obstacules" unique_id=1773598248]
+position = Vector2(960, 300)
+collision_layer = 4
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacules/Floor4" unique_id=2133145238]
+shape = SubResource("RectangleShape2D_u45fm")
+one_way_collision = true
