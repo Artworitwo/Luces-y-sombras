@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://brh8rgju0noeh" path="res://scenes/level_base.gd" id="1_w66m8"]
 [ext_resource type="PackedScene" uid="uid://dt62co07ni8yw" path="res://scenes/entities/enemies/Boxer.tscn" id="2_yn5qj"]
 [ext_resource type="PackedScene" uid="uid://cgjk8n3sf13q3" path="res://scenes/entities/enemies/Spawner.tscn" id="3_jguw4"]
+[ext_resource type="Script" uid="uid://dn6lwpxoswap1" path="res://scripts/playerSpawn.gd" id="5_thxwb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbyki"]
 size = Vector2(1200, 30)
@@ -19,22 +20,6 @@ script = ExtResource("1_w66m8")
 
 [node name="SandCointainer" type="Node2D" parent="." unique_id=1375854088]
 position = Vector2(-960, -510)
-
-[node name="Player1" parent="SandCointainer" unique_id=634313891 groups=["players"] instance=ExtResource("1_5vqh1")]
-position = Vector2(516, 187)
-right_input = "right1"
-left_input = "left1"
-jump_input = "jump1"
-down_input = "down1"
-damage = 2
-
-[node name="Player2" parent="SandCointainer" unique_id=1823252324 groups=["players"] instance=ExtResource("1_5vqh1")]
-position = Vector2(518, 424)
-right_input = "right2"
-left_input = "left2"
-jump_input = "jump2"
-down_input = "down2"
-damage = 2
 
 [node name="Obstacules" type="Node2D" parent="SandCointainer" unique_id=1633480042]
 
@@ -105,8 +90,16 @@ shape = SubResource("RectangleShape2D_u45fm")
 one_way_collision = true
 
 [node name="SpawnerBoxer" parent="SandCointainer" unique_id=1827032468 instance=ExtResource("3_jguw4")]
+_spawnable_scenes = PackedStringArray("uid://dt62co07ni8yw")
+spawn_path = NodePath("..")
 listEnemy = ExtResource("2_yn5qj")
 minTimeSpawn = 1
 maxTimeSpawn = 3
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="SandCointainer" unique_id=63730215]
+_spawnable_scenes = PackedStringArray("uid://gd8be4axf4cd")
+spawn_path = NodePath("..")
+script = ExtResource("5_thxwb")
+network_player = ExtResource("1_5vqh1")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=830450615]

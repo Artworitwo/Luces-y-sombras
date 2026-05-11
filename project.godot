@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 PLAYER="*uid://l8gdybhpsny6"
 LEVELBASE="*uid://brh8rgju0noeh"
+CREATE="*uid://cbhtbehx5kmcn"
 
 [display]
 

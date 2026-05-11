@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
-	
+	#if !multiplayer.is_server(): return
 	if not is_on_floor():
 		velocity.y += 2000 * delta
 		
@@ -49,7 +49,9 @@ func _physics_process(delta: float) -> void:
 		STATE.DEATH:
 			if animated_sprite.animation != "death":
 				animated_sprite.play("death")
-				get_parent().LEVELBASE.record_death()
+				get_parent().get_parent().record_death()
+				await animated_sprite.animation_finished
+				get_parent().remove_child(self)
 		
 	if is_on_wall():
 		direction = get_wall_normal().x

@@ -28,14 +28,18 @@ motor Godot en ingles, para cuando se diga algo se entienda de donde es
 
 # Creamos las variables como propiedad del Jugador y se llenan con 
 # nuestros propio input map
-@export
-var right_input:String
-@export
-var left_input:String
-@export
-var jump_input:String
-@export
-var down_input:String
+#@export
+#var right_input:String
+#@export
+#var left_input:String
+#@export
+#var jump_input:String
+#@export
+#var down_input:String
+var right_input = "ui_right"
+var left_input = "ui_left"
+var jump_input = "ui_up"
+var down_input = "ui_down"
 
 @export var damage:int
 # Variables de movimiento
@@ -48,10 +52,13 @@ var health = 5
 
 var perkTreeRoot
 
+func _enter_tree():
+	set_multiplayer_authority(name.to_int())
+	position = Vector2(500, 500)
 # Se ejecuta acorde con la cantidad de fotogramas que soporte tu 
 # computador, desde 1 hasta 400. útil para cosas de renderizado o gráfico
 func _process(delta: float) -> void:
-	
+	if(!is_multiplayer_authority()): return
 	# Método de prueba para detectar un click del usuario
 	if Input.is_action_just_pressed("clickLeft"):
 		print("click")
@@ -60,6 +67,7 @@ func _process(delta: float) -> void:
 
 # Se ejecuta 60 veces por segundo, no sobrecargarlo
 func _physics_process(delta: float) -> void:
+	if(!is_multiplayer_authority()): return
 	# Añadir gravedad
 	if not is_on_floor():
 		velocity.y += 2000 * delta
@@ -117,8 +125,18 @@ func _on_hit_box_attack_body_entered(body: Node2D) -> void:
 	print("colision con: ", body)
 	# Preguntamos si el cuerpo con el que chocamos tiene la "camiseta" de Enemigo
 	if body.is_in_group("enemies"):
-		body.receive_damage()
+		damage_enemy.rpc_id(1, body.get_path())
 		# Aquí luego le dirás al enemigo que se desactive o se purifique
 		# body.purificar()
-		
-		
+
+#esto del rpc permite que la funcion sea realizada como una
+#"solicitud" al servidor/host, de forma que el cliente no esta
+#metiendo manos en el server sino que solo le avisa, y el server 
+#hace el resto, arribita esta la funcion con eso aplicado:
+#damage_enemy.rpc_id(1, body.get_path()), donde el 1 es el host
+@rpc("any_peer")
+func damage_enemy(enemy_path):
+	if !multiplayer.is_server():return
+	var enemy = get_node(enemy_path)
+	if enemy:
+		enemy.receive_damage()

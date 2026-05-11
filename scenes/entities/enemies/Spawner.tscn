@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjqek4vdoqa4g" path="res://scenes/entities/enemies/spawner.gd" id="1_bdr4j"]
 
-[node name="Spawner" type="Node2D" unique_id=1827032468 groups=["enemies"]]
+[node name="Spawner" type="MultiplayerSpawner" unique_id=1329527896 groups=["enemies"]]
 script = ExtResource("1_bdr4j")
 
 [node name="Timer" type="Timer" parent="." unique_id=1854239856]
