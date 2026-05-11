@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyprmqpufnqr7"
-path="res://.godot/imported/Soldier-Walk.png-94bd825cfb98f5e4b8e04409ea92c493.ctex"
+uid="uid://bv7hefvgyvay7"
+path="res://.godot/imported/02Spawn.png-f402bee6023be7e34a54bf5f4ca9ba99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://visual assets/enemies/boxer/Soldier-Walk.png"
-dest_files=["res://.godot/imported/Soldier-Walk.png-94bd825cfb98f5e4b8e04409ea92c493.ctex"]
+source_file="res://visual assets/enemies/clown/02Spawn.png"
+dest_files=["res://.godot/imported/02Spawn.png-f402bee6023be7e34a54bf5f4ca9ba99.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjkou2b1dtmdf"
-path="res://.godot/imported/Soldier-Attack01.png-d61ab950f3ea3724b11be7dbd826ae6c.ctex"
+uid="uid://t0lpr8r03w1t"
+path="res://.godot/imported/01Death.png-574a160b6a532230bbf6b2563bebaf8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://visual assets/enemies/boxer/Soldier-Attack01.png"
-dest_files=["res://.godot/imported/Soldier-Attack01.png-d61ab950f3ea3724b11be7dbd826ae6c.ctex"]
+source_file="res://visual assets/enemies/boxer/01Death.png"
+dest_files=["res://.godot/imported/01Death.png-574a160b6a532230bbf6b2563bebaf8c.ctex"]
 
 [params]
 
