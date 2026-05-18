@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 
-@export var speed = 100
+@export var speed: int
 @export var direction:int
-@export var healt:int
+@export var damage: int
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var timer = $Timer 
+var health = 1
 
 
 enum STATE {
@@ -26,11 +27,15 @@ func _process(delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
-	#if !multiplayer.is_server(): return
-	if not is_on_floor():
+	if !multiplayer.is_server(): return
+	
+	if is_queued_for_deletion() or current_state == STATE.DEATH:
+		return
+	
+	if not is_on_floor() and current_state != STATE.DEATH:
 		velocity.y += 2000 * delta
 		
-	if healt <= 0 and current_state != STATE.DEATH:
+	if health <= 0 and current_state != STATE.DEATH:
 		current_state = STATE.DEATH
 		
 	match current_state:
@@ -47,11 +52,14 @@ func _physics_process(delta: float) -> void:
 				animated_sprite.play("move")
 			animated_sprite.flip_h = (direction == -1)
 		STATE.DEATH:
+			velocity.x = 0
+			velocity.y = 1
+			$CollisionShape2D.set_deferred("disabled", true)
 			if animated_sprite.animation != "death":
 				animated_sprite.play("death")
 				get_parent().get_parent().record_death()
 				await animated_sprite.animation_finished
-				get_parent().remove_child(self)
+				queue_free()
 		
 	if is_on_wall():
 		direction = get_wall_normal().x
@@ -60,17 +68,17 @@ func _physics_process(delta: float) -> void:
 		
 
 func receive_damage() -> void:
-	healt =- PLAYER.damage
+	health = health - PLAYER.damage
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	print("¡La animación terminó! Era la de: ", animated_sprite.animation)
+	#print("¡La animación terminó! Era la de: ", animated_sprite.animation)
 	if (animated_sprite.animation == "spawn"):
 		current_state = STATE.IDLE
 	
 
 
 func _on_timer_timeout() -> void:
-	print("El timer se acabó inicia nuevo decision")
+	#print("El timer se acabó inicia nueva decision")
 	var decision = randi_range(0, 100)
 	
 	if decision < 45:
@@ -86,6 +94,11 @@ func _on_timer_timeout() -> void:
 	_iniciar_siguiente_decision()
 
 func _iniciar_siguiente_decision():
-	print("Tomando siguiente decision")
-	timer.wait_time = randf_range(0.5, 3.5)
+	#print("Tomando siguiente decision")
+	timer.wait_time = randf_range(1, 3.5)
 	timer.start()
+	
+func purgar_enemigo():
+	health = 0 # Le quitamos toda la vida de golpe
+	# Llamamos a la lógica que ya tienes para que cambie a estado DEATH
+	# Si la lógica de muerte está en el _physics_process, esto bastará.

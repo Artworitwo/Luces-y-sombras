@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dt62co07ni8yw" path="res://scenes/entities/enemies/Boxer.tscn" id="2_yn5qj"]
 [ext_resource type="PackedScene" uid="uid://cgjk8n3sf13q3" path="res://scenes/entities/enemies/Spawner.tscn" id="3_jguw4"]
 [ext_resource type="Script" uid="uid://dn6lwpxoswap1" path="res://scripts/playerSpawn.gd" id="5_thxwb"]
+[ext_resource type="PackedScene" uid="uid://dv7bik0r6dmqk" path="res://scenes/entities/enemies/BossSpawner.tscn" id="6_51nyb"]
+[ext_resource type="PackedScene" uid="uid://bf2uvrr28814i" path="res://scenes/entities/enemies/Clown.tscn" id="6_841gl"]
+[ext_resource type="PackedScene" uid="uid://c1c8kwt4etktd" path="res://scenes/entities/enemies/BossEnemy.tscn" id="7_8eb0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbyki"]
 size = Vector2(1200, 30)
@@ -17,6 +20,7 @@ size = Vector2(1200, 30)
 
 [node name="LevelBase" type="Node2D" unique_id=700040340]
 script = ExtResource("1_w66m8")
+goal_enemies_purified = 2
 
 [node name="SandCointainer" type="Node2D" parent="." unique_id=1375854088]
 position = Vector2(-960, -510)
@@ -42,7 +46,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_bcb0y")
 
 [node name="WallLeft" type="StaticBody2D" parent="SandCointainer/Obstacules" unique_id=1247837619]
-position = Vector2(375, 500)
+position = Vector2(375, 495)
 collision_layer = 4
 collision_mask = 0
 metadata/_edit_group_ = true
@@ -89,17 +93,28 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_u45fm")
 one_way_collision = true
 
-[node name="SpawnerBoxer" parent="SandCointainer" unique_id=1827032468 instance=ExtResource("3_jguw4")]
+[node name="SpawnerBoxer" parent="SandCointainer" unique_id=1827032468 groups=["spawners"] instance=ExtResource("3_jguw4")]
 _spawnable_scenes = PackedStringArray("uid://dt62co07ni8yw")
 spawn_path = NodePath("..")
 listEnemy = ExtResource("2_yn5qj")
-minTimeSpawn = 1
-maxTimeSpawn = 3
+maxTimeSpawn = 3.0
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="SandCointainer" unique_id=63730215]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="SandCointainer" unique_id=63730215 groups=["players"]]
 _spawnable_scenes = PackedStringArray("uid://gd8be4axf4cd")
 spawn_path = NodePath("..")
 script = ExtResource("5_thxwb")
 network_player = ExtResource("1_5vqh1")
+
+[node name="BossSpawner" parent="SandCointainer" unique_id=791642307 groups=["enemies"] instance=ExtResource("6_51nyb")]
+unique_name_in_owner = true
+spawn_path = NodePath("..")
+listEnemy = ExtResource("7_8eb0p")
+
+[node name="SpawneClownr" parent="SandCointainer" unique_id=1329527896 groups=["spawners"] instance=ExtResource("3_jguw4")]
+_spawnable_scenes = PackedStringArray("uid://bf2uvrr28814i")
+spawn_path = NodePath("..")
+listEnemy = ExtResource("6_841gl")
+minTimeSpawn = 2.0
+maxTimeSpawn = 4.5
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=830450615]

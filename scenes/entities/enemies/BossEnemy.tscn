@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://c1c8kwt4etktd"]
+
+[ext_resource type="Script" uid="uid://miy3wommr3iv" path="res://scenes/entities/enemies/boss_enemy.gd" id="1_7fajd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7fajd"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"spawn",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7fajd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fajd"]
+radius = 37.85
+height = 132.08
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fajd"]
+size = Vector2(100, 140)
+
+[node name="BossEnemy" type="CharacterBody2D" unique_id=1360395524 groups=["enemies"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_7fajd")
+damage = 2
+health = 4
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=154076635]
+offset_left = -81.0
+offset_top = -106.0
+offset_right = 83.0
+offset_bottom = -79.0
+
+[node name="Timer" type="Timer" parent="." unique_id=256966433]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1236214000]
+sprite_frames = SubResource("SpriteFrames_7fajd")
+animation = &"death"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=391137161]
+replication_config = SubResource("SceneReplicationConfig_7fajd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=452927244]
+shape = SubResource("CapsuleShape2D_7fajd")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1709302862]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=594941818]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_7fajd")
+debug_color = Color(0.9082612, 0.08154521, 0.70512456, 0.41960785)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

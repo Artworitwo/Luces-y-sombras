@@ -41,6 +41,7 @@ folder_colors={
 "res://scenes/": "yellow",
 "res://scripts/": "orange",
 "res://sounds resources/": "red",
+"res://ui/": "teal",
 "res://visual assets/": "red"
 }
 
@@ -48,6 +49,7 @@ folder_colors={
 
 players=""
 enemies=""
+spawners=""
 
 [input]
 

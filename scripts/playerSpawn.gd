@@ -6,6 +6,8 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(spawn_player)
 	if multiplayer.is_server():
 		spawn_player(multiplayer.get_unique_id())
+		
+
 func spawn_player(id:int)-> void:
 	if !multiplayer.is_server(): return
 	

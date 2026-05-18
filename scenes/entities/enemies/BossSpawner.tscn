@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dv7bik0r6dmqk"]
+
+[ext_resource type="Script" uid="uid://dyre3xl6mu1ys" path="res://scenes/entities/enemies/boss_spawner.gd" id="1_26kvm"]
+
+[node name="BossSpawner" type="MultiplayerSpawner" unique_id=791642307]
+script = ExtResource("1_26kvm")
