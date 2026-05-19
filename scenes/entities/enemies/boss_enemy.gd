@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var timer = $Timer
 @onready var health_bar = $HealthBar # Asumiendo que tienes una ProgressBar como hijo
-
+@onready var special = $Special
 var current_floor = 3
 var attack_count = 0
 var is_invulnerable = true
@@ -24,7 +24,7 @@ func _ready() -> void:
 	current_state = STATE.SPAWN
 	animated_sprite.play("spawn")
 	timer.start()
-	
+	special.disabled = true
 	_iniciar_siguiente_decision() 
 	print("Diva inicializada y pensando...")
 
@@ -72,6 +72,9 @@ func _physics_process(delta: float) -> void:
 		STATE.ATTACK:
 			if animated_sprite.animation != "attack":
 				animated_sprite.play("attack")
+			special.disabled = false
+			await get_tree().create_timer(2.0).timeout
+			special.disabled = true
 			is_invulnerable = true
 
 		STATE.WEAKNESS: 
@@ -93,7 +96,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 # --- RECIBIR DAÑO ---
-func receive_damage (amount: int) -> void:
+func receive_damage () -> void:
 	if is_invulnerable:
 		#Aquí podrías llamar a la función de daño del JUGADOR
 		PLAYER.flash_damage()
@@ -101,7 +104,7 @@ func receive_damage (amount: int) -> void:
 		print("Es inmune")
 		return
 	
-	health -= amount
+	health -= PLAYER.damage
 	if health_bar:
 		health_bar.value = health
 	
@@ -168,4 +171,6 @@ func _on_hurtbox_area_entered(body: Area2D) -> void:
 			body.receive_damage(PLAYER.damage)
 		else:
 			print("Es inmune en esta estado")
+			
+
 			

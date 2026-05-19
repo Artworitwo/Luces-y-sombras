@@ -56,13 +56,19 @@ offset_bottom = -79.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1236214000]
 sprite_frames = SubResource("SpriteFrames_7fajd")
-animation = &"death"
+animation = &"attack"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=391137161]
 replication_config = SubResource("SceneReplicationConfig_7fajd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=452927244]
 shape = SubResource("CapsuleShape2D_7fajd")
+
+[node name="Special" type="CollisionShape2D" parent="." unique_id=923362560]
+position = Vector2(-0.5, 0)
+scale = Vector2(12.058036, 4.343655)
+shape = SubResource("RectangleShape2D_7fajd")
+debug_color = Color(0.71521574, 0.48385245, 0.07697027, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1709302862]
 
@@ -71,4 +77,5 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_7fajd")
 debug_color = Color(0.9082612, 0.08154521, 0.70512456, 0.41960785)
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

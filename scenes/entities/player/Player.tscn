@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gd8be4axf4cd"]
 
-[ext_resource type="Script" uid="uid://l8gdybhpsny6" path="res://scripts/entities/player/player.gd" id="1_gfd2q"]
+[ext_resource type="Script" uid="uid://l8gdybhpsny6" path="res://scripts/entities/player/Player.gd" id="1_gfd2q"]
 [ext_resource type="Texture2D" uid="uid://bib0afr4nbwl6" path="res://visual assets/playerWalkspritesheet.png" id="2_afppm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afppm"]

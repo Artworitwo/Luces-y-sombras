@@ -3,8 +3,8 @@ extends CharacterBody2D
 enum STATE { IDLE, WALK, JUMP, DEATH, CINEMATIC }
 var current_state = STATE.IDLE
 
-@onready var animated_sprite = find_child("AnimatedSprite2D")
-@onready var hitbox_attack = find_child("HitBoxAttack")
+@onready var animated_sprite = get_node("AnimatedSprite2D")
+@onready var hitbox_attack = get_node("HitBoxAttack")
 
 var is_dead = false
 var health = 5
@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	if current_state == STATE.CINEMATIC:
 		direction = 0 # No se desplaza
 		velocity.x = 0
-		move_and_slide()
+
 		return # Ignora el resto de inputs de movimiento
 
 	# Gravedad universal
@@ -138,10 +138,11 @@ func damage_enemy(enemy_path):
 		enemy.receive_damage()
 		
 func flash_damage():
-	animated_sprite.modulate = Color(10, 1, 1)
-	await get_tree().create_timer(0.15).timeout
-	animated_sprite.modulate = Color(1, 1, 1)
-	
+	if (animated_sprite):
+		animated_sprite.modulate = Color(10, 1, 1)
+		await get_tree().create_timer(0.15).timeout
+		animated_sprite.modulate = Color(1, 1, 1)
+		
 func _on_hit_box_player_body_entered(body: Node2D) -> void:
 	# 1. Seguridad para multijugador: solo el "dueño" del jugador procesa su daño
 	if not is_multiplayer_authority(): return 
