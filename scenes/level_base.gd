@@ -2,13 +2,14 @@ extends Node2D
 
 @export var goal_enemies_purified:int
 @onready var boss_spawner = find_child("BossSpawner") # Tu MultiplayerSpawner del jefe
+@onready var door
 var enemies_purified = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	enemies_purified = 0
-
+	door = $Door
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -27,7 +28,8 @@ func record_death() -> void:
 func boss_defeated() -> void:
 	if !multiplayer.is_server(): return
 	print("La Diva ha sido derrotada")
-	
+	door.visible = true
+	door.open()
 	
 		
 func limpiar_mapa_y_spawn_boss():
@@ -64,3 +66,9 @@ func show_game_over_screen():
 	add_child(game_over)
 	# Opcional: pausar el juego para que nada se mueva atrás
 	get_tree().paused = true
+	
+func changeBack(tex:Texture2D):
+	$Node2D/Sprite2D.texture = tex
+	var tam_objetivo = Vector2(1200, -1000)
+	var tam_original = tex.get_size()
+	$Node2D/Sprite2D.scale = tam_objetivo / tam_original

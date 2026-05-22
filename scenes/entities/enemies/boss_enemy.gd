@@ -99,6 +99,7 @@ func _physics_process(delta: float) -> void:
 				# Avisar al nivel
 			if get_parent().get_parent().has_method("record_death"):
 				get_parent().get_parent().record_death()
+				get_parent().get_parent().boss_defeated()
 			queue_free()
 
 	move_and_slide()

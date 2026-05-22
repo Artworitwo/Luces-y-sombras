@@ -32,8 +32,9 @@ rotation = 3.1415927
 scale = Vector2(2.008668, -1.9814253)
 texture = ExtResource("2_f68rg")
 
-[node name="CharacterBody2D" parent="." unique_id=891867125 instance=ExtResource("3_f68rg")]
-position = Vector2(18, -99)
+[node name="Door" parent="." unique_id=891867125 instance=ExtResource("3_f68rg")]
+visible = false
+position = Vector2(18, -94)
 
 [node name="SandCointainer" type="Node2D" parent="." unique_id=1375854088]
 position = Vector2(-960, -510)
