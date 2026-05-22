@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var timer = $Timer
 @onready var health_bar = $HealthBar # Asumiendo que tienes una ProgressBar como hijo
 @onready var special = $Special
+@onready var atackBox = $Hurtbox/CollisionShape2D
 var current_floor = 3
 var attack_count = 0
 var is_invulnerable = true
@@ -25,6 +26,7 @@ func _ready() -> void:
 	animated_sprite.play("spawn")
 	timer.start()
 	special.disabled = true
+	health_bar.value = int(health / 4) * 100
 	_iniciar_siguiente_decision() 
 	print("Diva inicializada y pensando...")
 
@@ -75,9 +77,14 @@ func _physics_process(delta: float) -> void:
 			special.disabled = false
 			await get_tree().create_timer(2.0).timeout
 			special.disabled = true
+			current_state = STATE.WEAKNESS
+			timer.start(3.0)
 			is_invulnerable = true
+			
 
 		STATE.WEAKNESS: 
+			damage = 0
+			atackBox.disabled = true
 			velocity.x = 0
 			is_invulnerable = false # AQUÍ SÍ LE DUELE
 			if animated_sprite.animation != "weakness":
@@ -90,8 +97,9 @@ func _physics_process(delta: float) -> void:
 			if animated_sprite.animation != "death":
 				animated_sprite.play("death")
 				# Avisar al nivel
-				if get_parent().has_method("record_death"):
-					get_parent().record_death()
+			if get_parent().get_parent().has_method("record_death"):
+				get_parent().get_parent().record_death()
+			queue_free()
 
 	move_and_slide()
 
@@ -103,10 +111,10 @@ func receive_damage () -> void:
 		PLAYER.health -= 2 
 		print("Es inmune")
 		return
-	
+	print("recibio daño")
 	health -= PLAYER.damage
 	if health_bar:
-		health_bar.value = health
+		health_bar.value = (health / 4.0) * 100
 	
 	# Feedback visual de daño (Flash rojo)
 	animated_sprite.modulate = Color(10, 1, 1) # Rojo intenso
@@ -134,6 +142,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			if attack_count >= 3:
 				current_state = STATE.WEAKNESS
 				timer.start(3.0) # Duración de la debilidad
+				
 			else:
 				_iniciar_siguiente_decision()
 		STATE.DEATH:
@@ -143,6 +152,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_timer_timeout() -> void:
 	if current_state == STATE.WEAKNESS:
 		# Se acabó el tiempo de debilidad
+		atackBox.disabled = false
 		attack_count = 0
 		animated_sprite.modulate = Color(1, 1, 1)
 		current_state = STATE.IDLE
@@ -161,6 +171,7 @@ func _on_timer_timeout() -> void:
 		current_state = STATE.ATTACK
 
 func _iniciar_siguiente_decision():
+	damage = 2
 	timer.wait_time = randf_range(1.0, 2.5)
 	timer.start()
 

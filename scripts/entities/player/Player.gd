@@ -149,6 +149,10 @@ func _on_hit_box_player_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 	# 2. Preguntamos si el objeto realmente tiene la variable damage
 		if "damage" in body:
+			if body.damage == 0:
+				return
+			
+			print("Daño hecho por:", body)
 			health -= body.damage
 			print("Daño recibido: ", body.damage, " | Vida restante: ", health)
 			# 3. Llamamos al efecto visual

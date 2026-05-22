@@ -24,6 +24,12 @@ func record_death() -> void:
 	if (enemies_purified == goal_enemies_purified):
 		limpiar_mapa_y_spawn_boss()
 		
+func boss_defeated() -> void:
+	if !multiplayer.is_server(): return
+	print("La Diva ha sido derrotada")
+	
+	
+		
 func limpiar_mapa_y_spawn_boss():
 	print("¡PURGA INICIADA!")
 	# Esta línea busca a TODO lo que esté en el grupo "enemies" 

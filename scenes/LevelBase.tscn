@@ -107,6 +107,7 @@ network_player = ExtResource("1_5vqh1")
 
 [node name="BossSpawner" parent="SandCointainer" unique_id=791642307 groups=["enemies"] instance=ExtResource("6_51nyb")]
 unique_name_in_owner = true
+_spawnable_scenes = PackedStringArray("uid://c1c8kwt4etktd")
 spawn_path = NodePath("..")
 listEnemy = ExtResource("7_8eb0p")
 
