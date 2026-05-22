@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://gd8be4axf4cd" path="res://scenes/entities/player/Player.tscn" id="1_5vqh1"]
 [ext_resource type="Script" uid="uid://brh8rgju0noeh" path="res://scenes/level_base.gd" id="1_w66m8"]
+[ext_resource type="Texture2D" uid="uid://celencrlkpb5j" path="res://visual assets/Objects/BG1-Lab-Corregido.png" id="2_f68rg"]
 [ext_resource type="PackedScene" uid="uid://dt62co07ni8yw" path="res://scenes/entities/enemies/Boxer.tscn" id="2_yn5qj"]
+[ext_resource type="PackedScene" uid="uid://cw410dsw354k8" path="res://scenes/Objects/character_body_2d.tscn" id="3_f68rg"]
 [ext_resource type="PackedScene" uid="uid://cgjk8n3sf13q3" path="res://scenes/entities/enemies/Spawner.tscn" id="3_jguw4"]
 [ext_resource type="Script" uid="uid://dn6lwpxoswap1" path="res://scripts/playerSpawn.gd" id="5_thxwb"]
 [ext_resource type="PackedScene" uid="uid://dv7bik0r6dmqk" path="res://scenes/entities/enemies/BossSpawner.tscn" id="6_51nyb"]
@@ -21,6 +23,17 @@ size = Vector2(1200, 30)
 [node name="LevelBase" type="Node2D" unique_id=700040340]
 script = ExtResource("1_w66m8")
 goal_enemies_purified = 2
+
+[node name="Node2D" type="Node2D" parent="." unique_id=2071819289]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1793669891]
+position = Vector2(0.9999995, -23.999998)
+rotation = 3.1415927
+scale = Vector2(2.008668, -1.9814253)
+texture = ExtResource("2_f68rg")
+
+[node name="CharacterBody2D" parent="." unique_id=891867125 instance=ExtResource("3_f68rg")]
+position = Vector2(18, -99)
 
 [node name="SandCointainer" type="Node2D" parent="." unique_id=1375854088]
 position = Vector2(-960, -510)

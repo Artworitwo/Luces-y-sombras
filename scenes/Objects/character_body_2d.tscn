@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://cw410dsw354k8"]
+
+[ext_resource type="Texture2D" uid="uid://bdyaysgve6enm" path="res://visual assets/Objects/Door.png" id="1_6q3m1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xopb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn6mb"]
+atlas = ExtResource("1_6q3m1")
+region = Rect2(1200, 0, 600, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0467"]
+atlas = ExtResource("1_6q3m1")
+region = Rect2(0, 0, 600, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8p1m"]
+atlas = ExtResource("1_6q3m1")
+region = Rect2(3000, 0, 600, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xph7u"]
+atlas = ExtResource("1_6q3m1")
+region = Rect2(2400, 0, 600, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai7h2"]
+atlas = ExtResource("1_6q3m1")
+region = Rect2(600, 0, 600, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r43d"]
+atlas = ExtResource("1_6q3m1")
+region = Rect2(1800, 0, 600, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlumr"]
+atlas = ExtResource("1_6q3m1")
+region = Rect2(3600, 0, 600, 495)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaphf"]
+atlas = ExtResource("1_6q3m1")
+region = Rect2(4200, 0, 600, 495)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oyxrr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn6mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0467")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8p1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xph7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ai7h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r43d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlumr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaphf")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 4.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=891867125]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1211796481]
+scale = Vector2(17.760002, 8.56)
+shape = SubResource("RectangleShape2D_3xopb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=561074885]
+position = Vector2(15.000001, 63)
+scale = Vector2(1.9999994, 1.8578651)
+sprite_frames = SubResource("SpriteFrames_oyxrr")
+animation = &"Open"
+frame_progress = 0.24004486

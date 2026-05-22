@@ -38,10 +38,6 @@ region = Rect2(192, 2, 32, 30)
 atlas = ExtResource("2_bj2n0")
 region = Rect2(160, 2, 32, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_87t7a"]
-atlas = ExtResource("3_bj2n0")
-region = Rect2(0, 2, 32, 30)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vf2i"]
 atlas = ExtResource("3_bj2n0")
 region = Rect2(32, 2, 32, 30)
@@ -49,6 +45,10 @@ region = Rect2(32, 2, 32, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_usufr"]
 atlas = ExtResource("3_bj2n0")
 region = Rect2(64, 2, 32, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87t7a"]
+atlas = ExtResource("3_bj2n0")
+region = Rect2(0, 2, 32, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_en4ox"]
 atlas = ExtResource("3_bj2n0")
@@ -67,14 +67,6 @@ atlas = ExtResource("4_bj2n0")
 region = Rect2(64, 0, 32, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r73w3"]
-atlas = ExtResource("4_bj2n0")
-region = Rect2(96, 0, 32, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yx1ol"]
-atlas = ExtResource("4_bj2n0")
-region = Rect2(64, 0, 32, 30)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xnp07"]
 atlas = ExtResource("4_bj2n0")
 region = Rect2(96, 0, 32, 30)
 
@@ -132,13 +124,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_87t7a")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_1vf2i")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_usufr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87t7a")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_en4ox")
@@ -159,12 +151,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r73w3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yx1ol")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xnp07")
 }],
 "loop": true,
 "name": &"move",
@@ -208,5 +194,6 @@ shape = SubResource("CapsuleShape2D_bj2n0")
 position = Vector2(4, -2)
 scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_73ops")
-frame = 6
+animation = &"spawn"
+frame = 5
 frame_progress = 1.0
