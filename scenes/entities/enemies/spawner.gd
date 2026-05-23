@@ -10,9 +10,7 @@ var random = RandomNumberGenerator.new()
  
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if !multiplayer.is_server():return
-	random.randomize()
-	timer.start()
+	activar_fabrica()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,3 +37,11 @@ func detener_spawner():
 	timer.stop() # Apaga el reloj
 	set_process(false) # Por si acaso, deja de procesar cualquier otra cosa
 	print("Fábrica de enemigos cerrada.")
+	
+func activar_fabrica():
+	if !multiplayer.is_server(): return
+	random.randomize()
+	timer.start()
+	set_process(true)
+	print("Fábrica activada.")
+	

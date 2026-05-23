@@ -3,12 +3,14 @@ extends CharacterBody2D
 @export var speed: int = 200
 @export var speed_horizontal: int 
 @export var damage: int
-@export var health: int
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var timer = $Timer
 @onready var health_bar = $HealthBar # Asumiendo que tienes una ProgressBar como hijo
 @onready var special = $Special
 @onready var atackBox = $Hurtbox/CollisionShape2D
+
+var health 
+var health_max: float = 4.0
 var current_floor = 3
 var attack_count = 0
 var is_invulnerable = true
@@ -26,7 +28,8 @@ func _ready() -> void:
 	animated_sprite.play("spawn")
 	timer.start()
 	special.disabled = true
-	health_bar.value = int(health / 4) * 100
+	health = health_max
+	health_bar.value = (health / health_max) * 100
 	_iniciar_siguiente_decision() 
 	print("Diva inicializada y pensando...")
 
@@ -115,7 +118,7 @@ func receive_damage () -> void:
 	print("recibio daño")
 	health -= PLAYER.damage
 	if health_bar:
-		health_bar.value = (health / 4.0) * 100
+		health_bar.value = (health / health_max) * 100
 	
 	# Feedback visual de daño (Flash rojo)
 	animated_sprite.modulate = Color(10, 1, 1) # Rojo intenso

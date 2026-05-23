@@ -4,8 +4,9 @@ extends Node2D
 @onready var boss_spawner = find_child("BossSpawner") # Tu MultiplayerSpawner del jefe
 @onready var door
 @export var enemies_purified = 0
-
-
+var passpoints = 0
+var boss_health_bonus = 0
+var levels_cleared = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	enemies_purified = 0
@@ -24,17 +25,21 @@ func record_death() -> void:
 	
 	if (enemies_purified == goal_enemies_purified):
 		PLAYER.perkpoints += 1
-		goal_enemies_purified = 0
+		passpoints += 1
 		limpiar_mapa_y_spawn_boss()
 		
 func boss_defeated() -> void:
 	if !multiplayer.is_server(): return
 	print("La Diva ha sido derrotada")
+	levels_cleared += 1
+	boss_health_bonus += 2
 	door.visible = true
+	door.next_room = "res://visual assets/Objects/BG3-zonaSegura.png"
 	door.open()
 
+func openthedoor():
+	door.open()
 	
-		
 func limpiar_mapa_y_spawn_boss():
 	print("¡PURGA INICIADA!")
 	# Esta línea busca a TODO lo que esté en el grupo "enemies" 
@@ -52,7 +57,7 @@ func limpiar_mapa_y_spawn_boss():
 func spawn_boss():
 	print("¡EL JEFE HA DESPERTADO!")
 	# Aquí llamas a la función de spawn del script que ya tienes
-	boss_spawner.trigger_boss_spawn()
+	boss_spawner.trigger_boss_spawn(boss_health_bonus)
 	
 # Esta función se llama cuando la vida llega a cero
 func check_death():
@@ -70,13 +75,21 @@ func show_game_over_screen():
 	# Opcional: pausar el juego para que nada se mueva atrás
 	get_tree().paused = true
 	
-func changeBack(tex:Texture2D):
+@rpc("any_peer", "call_local")
+func changeBack(tex_path:String):
+	var tex = load(tex_path)
 	$Node2D/Sprite2D.texture = tex
 	var tam_objetivo = Vector2(1200, -1000)
 	var tam_original = tex.get_size()
 	$Node2D/Sprite2D.scale = tam_objetivo / tam_original
-	$SafeZone.activarAreas()
-
+	if (tex_path == "res://visual assets/Objects/BG3-zonaSegura.png"):
+		$SafeZone.activarAreas()
+	else:
+		get_tree().call_group("spawners", "activar_fabrica")
+		enemies_purified = 0
+		goal_enemies_purified += 3
+		$SafeZone.apagarAreas()
+	
 func showMap(visible :bool):
 	if visible == true:
 		$MapTree.visible = true

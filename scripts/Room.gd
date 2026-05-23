@@ -6,18 +6,22 @@ var Boss:bool
 var DoorsTo = []
 var locked = true
 var button:Button
-func _init(bg, eN, Chief):
+var Levelbase
+func _init(bg, eN):
 	background = bg
 	enemieNumber = eN
-	Boss = Chief
+	
 func unlock():
 	self.locked = true
 	for neighbour in self.DoorsTo:
 		neighbour.locked = false
 		
 func _on_button_pressed():
-	if(self.locked==false):
+	if(self.locked==false and Levelbase.passpoints > 0):
+		Levelbase.get_node("Door").next_room = background
+		Levelbase.openthedoor()
 		self.unlock()
+		Levelbase.passpoints -= 1
 		
 func addButton(boton:Button):
 	button = boton

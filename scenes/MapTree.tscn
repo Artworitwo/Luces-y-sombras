@@ -21,13 +21,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_leje1")
 
-[node name="Button" type="Button" parent="TextureRect" unique_id=170940455]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 226.0
-offset_right = 157.0
-offset_bottom = 269.0
-
 [node name="Button2" type="Button" parent="TextureRect" unique_id=24308249]
 layout_mode = 0
 offset_left = 8.0

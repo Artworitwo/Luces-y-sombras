@@ -197,6 +197,7 @@ func boostall():
 			var peer_id = child.get_multiplayer_authority()
 			var player = get_parent().get_node(str(peer_id))
 			player.damage += 1
+	PLAYER.damage = damage
 
 	#for player in get_parent().get_children():
 		#if player is CharacterBody2D:
