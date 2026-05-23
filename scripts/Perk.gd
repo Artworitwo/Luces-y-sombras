@@ -14,6 +14,7 @@ var perkType
 var perkCode:int
 var locked = true
 var button:Button
+var player
 func _init(v):
 	metric = v
 	perkCode = randi_range(1, 3)
@@ -33,8 +34,21 @@ func unlock():
 		neighbour.locked = false
 		
 func _on_button_pressed():
-	if(self.locked==false):
+	if(self.locked==false and PLAYER.perkpoints > 0):
 		self.unlock()
+		if perkCode == 1:
+			print(player.health)
+			player.healall.rpc()
+			print(player.health)
+		elif perkCode == 2:
+			print(player.SPEED)
+			player.fastall.rpc()
+			print(player.SPEED)
+		elif perkCode == 3:
+			print(player.damage)
+			player.boostall.rpc()
+			print(player.damage)
+		PLAYER.perkpoints -= 1
 		
 func addButton(boton:Button):
 	button = boton

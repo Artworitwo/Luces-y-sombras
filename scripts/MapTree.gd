@@ -29,3 +29,8 @@ func _process(delta):
 			room.button.disabled = room.locked
 	
 	
+
+
+func _on_button_6_pressed() -> void:
+	self.visible = false
+	get_tree().paused = false

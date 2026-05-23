@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dtaegdgayvf5d"]
+
+[ext_resource type="Script" uid="uid://c5pr42wuc103o" path="res://scenes/Estadisticas.gd" id="1_c4rma"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=952852309]
+script = ExtResource("1_c4rma")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=778967265]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -440.0
+offset_right = 412.0
+offset_bottom = -206.0
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1714684978]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1381290335]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=42238268]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Vida "
+
+[node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=151762195]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+
+[node name="AtackLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1041238569]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Potencia de Purificación:"
+
+[node name="Atack" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1009910803]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1311207574]
+layout_mode = 2
+
+[node name="EneTotalLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1061716722]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Enemigos Purificados en Total:"
+
+[node name="EneTotal" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1878966130]
+layout_mode = 2

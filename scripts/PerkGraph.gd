@@ -39,4 +39,13 @@ func _process(delta):
 	for perk in perks:
 		if perk.button != null:
 			perk.button.disabled = perk.locked
+	if get_parent().get_node("SandCointainer").get_node(str(multiplayer.get_unique_id())):
+		for perk in perks:
+			if !perk.player:
+				perk.player = get_parent().get_node("SandCointainer").get_node(str(multiplayer.get_unique_id()))
+
+
+func _on_button_pressed() -> void:
+	self.visible = false
+	get_tree().paused = false
 	

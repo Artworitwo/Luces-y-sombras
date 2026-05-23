@@ -3,12 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://gd8be4axf4cd" path="res://scenes/entities/player/Player.tscn" id="1_5vqh1"]
 [ext_resource type="Script" uid="uid://brh8rgju0noeh" path="res://scenes/level_base.gd" id="1_w66m8"]
 [ext_resource type="Texture2D" uid="uid://celencrlkpb5j" path="res://visual assets/Objects/BG1-Lab-Corregido.png" id="2_f68rg"]
+[ext_resource type="PackedScene" uid="uid://dtaegdgayvf5d" path="res://scenes/canvas_layer.tscn" id="2_rfti0"]
 [ext_resource type="PackedScene" uid="uid://dt62co07ni8yw" path="res://scenes/entities/enemies/Boxer.tscn" id="2_yn5qj"]
 [ext_resource type="PackedScene" uid="uid://cw410dsw354k8" path="res://scenes/Objects/character_body_2d.tscn" id="3_f68rg"]
 [ext_resource type="PackedScene" uid="uid://cgjk8n3sf13q3" path="res://scenes/entities/enemies/Spawner.tscn" id="3_jguw4"]
+[ext_resource type="PackedScene" uid="uid://d08i05bjgjvtc" path="res://scripts/SafeZone.tscn" id="3_u2cq3"]
+[ext_resource type="PackedScene" uid="uid://q55i1d4s0id0" path="res://scenes/PerkGraph.tscn" id="5_rfti0"]
 [ext_resource type="Script" uid="uid://dn6lwpxoswap1" path="res://scripts/playerSpawn.gd" id="5_thxwb"]
 [ext_resource type="PackedScene" uid="uid://dv7bik0r6dmqk" path="res://scenes/entities/enemies/BossSpawner.tscn" id="6_51nyb"]
 [ext_resource type="PackedScene" uid="uid://bf2uvrr28814i" path="res://scenes/entities/enemies/Clown.tscn" id="6_841gl"]
+[ext_resource type="PackedScene" uid="uid://vkiqsxb83jtw" path="res://scenes/MapTree.tscn" id="6_d7gvg"]
 [ext_resource type="PackedScene" uid="uid://c1c8kwt4etktd" path="res://scenes/entities/enemies/BossEnemy.tscn" id="7_8eb0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbyki"]
@@ -20,9 +24,16 @@ size = Vector2(30, 990)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u45fm"]
 size = Vector2(1200, 30)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rfti0"]
+properties/0/path = NodePath(".:enemies_purified")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="LevelBase" type="Node2D" unique_id=700040340]
 script = ExtResource("1_w66m8")
 goal_enemies_purified = 2
+
+[node name="CanvasLayer" parent="." unique_id=952852309 instance=ExtResource("2_rfti0")]
 
 [node name="Node2D" type="Node2D" parent="." unique_id=2071819289]
 
@@ -32,8 +43,11 @@ rotation = 3.1415927
 scale = Vector2(2.008668, -1.9814253)
 texture = ExtResource("2_f68rg")
 
+[node name="SafeZone" parent="." unique_id=484487446 instance=ExtResource("3_u2cq3")]
+position = Vector2(2, 177)
+scale = Vector2(0.9117488, 0.25731516)
+
 [node name="Door" parent="." unique_id=891867125 instance=ExtResource("3_f68rg")]
-visible = false
 position = Vector2(18, -94)
 
 [node name="SandCointainer" type="Node2D" parent="." unique_id=1375854088]
@@ -132,4 +146,15 @@ listEnemy = ExtResource("6_841gl")
 minTimeSpawn = 2.0
 maxTimeSpawn = 4.5
 
+[node name="PerkGraph" parent="." unique_id=1303490256 instance=ExtResource("5_rfti0")]
+visible = false
+scale = Vector2(1.5, 1.5)
+
+[node name="MapTree" parent="." unique_id=189906657 instance=ExtResource("6_d7gvg")]
+visible = false
+scale = Vector2(2.184, 1.8)
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=830450615]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=176564209]
+replication_config = SubResource("SceneReplicationConfig_rfti0")

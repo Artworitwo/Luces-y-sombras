@@ -1,5 +1,5 @@
 extends Node
-var zonasegura = preload("res://visual assets/enemies/temporalboss.jpg")
+var zonasegura = preload("res://visual assets/Objects/BG3-zonaSegura.png")
 var nonactive: bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,9 +11,13 @@ func _process(delta: float) -> void:
 	pass
 	
 func open():
+	$AnimatedSprite2D2.play("lockopen")
+	await $AnimatedSprite2D2.animation_finished
+	$AnimatedSprite2D2.visible = false
 	$AnimatedSprite2D.play("Open")
 	await $AnimatedSprite2D.animation_finished
 	$CollisionShape2D.disabled = false
+	
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -21,3 +25,6 @@ func _on_body_entered(body: Node2D) -> void:
 		get_parent().changeBack(zonasegura)
 		$CollisionShape2D.disabled = true
 		$AnimatedSprite2D.play_backwards("Open")
+		await $AnimatedSprite2D.animation_finished
+		$AnimatedSprite2D2.visible = true
+		$AnimatedSprite2D2.play_backwards("lockopen")

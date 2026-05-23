@@ -55,6 +55,9 @@ properties/6/replication_mode = 1
 properties/7/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 properties/7/spawn = true
 properties/7/replication_mode = 1
+properties/8/path = NodePath("HealthBar:value")
+properties/8/spawn = true
+properties/8/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fajd"]
 radius = 37.85

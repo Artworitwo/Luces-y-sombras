@@ -4,11 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://bvn1isiyhca2q" path="res://visual assets/PerkGraph.jpg" id="2_udhwu"]
 
 [node name="PerkGraph" type="Node2D" unique_id=1303490256]
+process_mode = 2
 script = ExtResource("1_i5mhy")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=87459382]
-offset_right = 566.0
-offset_bottom = 439.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.0
+offset_top = -219.5
+offset_right = 283.0
+offset_bottom = 219.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_udhwu")
 
 [node name="Button2" type="Button" parent="TextureRect" unique_id=1965954542]
@@ -73,3 +83,10 @@ offset_left = 101.0
 offset_top = 371.0
 offset_right = 148.0
 offset_bottom = 418.0
+
+[node name="Button" type="Button" parent="TextureRect" unique_id=543856671]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

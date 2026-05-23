@@ -2,23 +2,28 @@ extends CharacterBody2D
 # Estados
 enum STATE { IDLE, WALK, JUMP, DEATH, CINEMATIC }
 var current_state = STATE.IDLE
+var local_player
 
-@onready var animated_sprite = get_node("AnimatedSprite2D")
-@onready var hitbox_attack = get_node("HitBoxAttack")
+@onready var animated_sprite = $AnimatedSprite2D
+@onready var hitbox_attack = $HitBoxAttack
 
 var is_dead = false
 var health = 5
+var max_health: float = 5.0
 var damage = 1
 var direction = 1
-const SPEED = 300.0
+var SPEED = 300.0
+var perkpoints: int = 0
 const JUMP_VELOCITY = -935.0
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 	position = Vector2(500, 500)
-
+	local_player = self
 func _ready() -> void:
 	# Agregamos una pequeña espera de seguridad para el multijugador
+	if is_multiplayer_authority():
+		local_player = self
 	if animated_sprite == null:
 		print("ERROR: No encontré el AnimatedSprite2D. Revisa el nombre en el árbol de nodos.")
 		return
@@ -98,6 +103,7 @@ func procesar_movimiento():
 	# Manejo de bajada de plataforma
 	if Input.is_action_just_pressed("ui_down") and is_on_floor():
 		position.y += 3
+		print(health,SPEED,damage,self)
 
 	# Aplicar velocidad y voltear sprite
 	velocity.x = direction * SPEED
@@ -164,3 +170,36 @@ func entrar_en_cinematica():
 	cambiar_estado(STATE.IDLE) # Lo ponemos a caminar
 	# Pero no procesamos inputs, así que se queda en el sitio
 	current_state = STATE.CINEMATIC
+
+@rpc("any_peer", "call_local")
+func healall():
+	for child in get_parent().get_children():
+		if child is CharacterBody2D:
+			var peer_id = child.get_multiplayer_authority()
+			var player = get_parent().get_node(str(peer_id))
+			player.max_health += 3
+			player.health = player.max_health
+			
+
+@rpc("any_peer", "call_local")		
+func fastall():
+	for child in get_parent().get_children():
+		if child is CharacterBody2D:
+			var peer_id = child.get_multiplayer_authority()
+			var player = get_parent().get_node(str(peer_id))
+			player.SPEED += 100
+
+			
+@rpc("any_peer", "call_local")
+func boostall():
+	for child in get_parent().get_children():
+		if child is CharacterBody2D:
+			var peer_id = child.get_multiplayer_authority()
+			var player = get_parent().get_node(str(peer_id))
+			player.damage += 1
+
+	#for player in get_parent().get_children():
+		#if player is CharacterBody2D:
+			#print(get_parent().get_children())
+			#player.damage += 1
+		

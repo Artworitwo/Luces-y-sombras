@@ -3,7 +3,7 @@ extends Node2D
 @export var goal_enemies_purified:int
 @onready var boss_spawner = find_child("BossSpawner") # Tu MultiplayerSpawner del jefe
 @onready var door
-var enemies_purified = 0
+@export var enemies_purified = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +23,8 @@ func record_death() -> void:
 	print("Enemigos purificados: ", enemies_purified)
 	
 	if (enemies_purified == goal_enemies_purified):
+		PLAYER.perkpoints += 1
+		goal_enemies_purified = 0
 		limpiar_mapa_y_spawn_boss()
 		
 func boss_defeated() -> void:
@@ -30,6 +32,7 @@ func boss_defeated() -> void:
 	print("La Diva ha sido derrotada")
 	door.visible = true
 	door.open()
+
 	
 		
 func limpiar_mapa_y_spawn_boss():
@@ -72,3 +75,16 @@ func changeBack(tex:Texture2D):
 	var tam_objetivo = Vector2(1200, -1000)
 	var tam_original = tex.get_size()
 	$Node2D/Sprite2D.scale = tam_objetivo / tam_original
+	$SafeZone.activarAreas()
+
+func showMap(visible :bool):
+	if visible == true:
+		$MapTree.visible = true
+	else:
+		$MapTree.visible = false
+	
+func showTree(visible : bool):
+	if visible == true:
+		$PerkGraph.visible = true
+	else:
+		$PerkGraph.visible = false

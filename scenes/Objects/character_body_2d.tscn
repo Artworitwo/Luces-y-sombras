@@ -2,6 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://bdyaysgve6enm" path="res://visual assets/Objects/Door.png" id="1_6q3m1"]
 [ext_resource type="Script" uid="uid://dnpt5ils50gsy" path="res://scripts/door.gd" id="1_jq7s1"]
+[ext_resource type="Texture2D" uid="uid://bb0dj6fp4s7io" path="res://visual assets/Objects/lock1.png" id="3_5gnub"]
+[ext_resource type="Texture2D" uid="uid://bju6r5uw3t8wh" path="res://visual assets/Objects/lock2.png" id="4_tm783"]
+[ext_resource type="Texture2D" uid="uid://mn6wmj4snd1l" path="res://visual assets/Objects/lock3.png" id="5_khj8o"]
+[ext_resource type="Texture2D" uid="uid://chy02y6lux7vm" path="res://visual assets/Objects/lock4.png" id="6_g6ms2"]
+[ext_resource type="Texture2D" uid="uid://by41uykqosbc7" path="res://visual assets/Objects/lock5.png" id="7_o7r0b"]
+[ext_resource type="Texture2D" uid="uid://c5ywh6nhcltuv" path="res://visual assets/Objects/lock6.png" id="8_0jpwj"]
+[ext_resource type="Texture2D" uid="uid://dsv7ma364hyic" path="res://visual assets/Objects/lock7.png" id="9_rin4q"]
+[ext_resource type="Texture2D" uid="uid://cdvi1g6ckeobl" path="res://visual assets/Objects/lock8.png" id="10_13h8t"]
+[ext_resource type="Texture2D" uid="uid://c4jhsf65grdje" path="res://visual assets/Objects/lock9.png" id="11_1bnoh"]
+[ext_resource type="Texture2D" uid="uid://br3d16q7qm55h" path="res://visual assets/Objects/lock10.png" id="12_blltt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rn6mb"]
 atlas = ExtResource("1_6q3m1")
@@ -72,8 +82,68 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_twfke"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5gnub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tm783")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_khj8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g6ms2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_o7r0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0jpwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rin4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_13h8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1bnoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_blltt")
+}],
+"loop": false,
+"name": &"lockopen",
+"speed": 10.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xopb"]
 size = Vector2(7.3198195, 20)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5gnub"]
+properties/0/path = NodePath("AnimatedSprite2D:animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite2D2:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("CollisionShape2D:disabled")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("AnimatedSprite2D:frame")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite2D2:frame")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [node name="CharacterBody2D" type="Area2D" unique_id=329587886]
 collision_layer = 8
@@ -85,11 +155,20 @@ scale = Vector2(1.9999994, 1.8578651)
 sprite_frames = SubResource("SpriteFrames_oyxrr")
 animation = &"Open"
 
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1394750578]
+position = Vector2(12, 49)
+scale = Vector2(1.6643238, 1.7149583)
+sprite_frames = SubResource("SpriteFrames_twfke")
+animation = &"lockopen"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1211796481]
 position = Vector2(-1.0000038, 0)
 scale = Vector2(17.760002, 8.56)
 shape = SubResource("RectangleShape2D_3xopb")
 disabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1962906686]
+replication_config = SubResource("SceneReplicationConfig_5gnub")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

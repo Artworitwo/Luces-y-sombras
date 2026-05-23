@@ -1,3 +1,32 @@
 [gd_scene format=3 uid="uid://d08i05bjgjvtc"]
 
+[ext_resource type="Script" uid="uid://koew54hlq3m2" path="res://scripts/safe_zone.gd" id="1_pno0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kexe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbwk1"]
+size = Vector2(19.28404, 20)
+
 [node name="SafeZone" type="Node2D" unique_id=484487446]
+script = ExtResource("1_pno0a")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1492226214]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=831643922]
+position = Vector2(-400, 0)
+scale = Vector2(15, 15)
+shape = SubResource("RectangleShape2D_3kexe")
+disabled = true
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=1363391931]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=2030792306]
+position = Vector2(400, 0)
+scale = Vector2(15, 15)
+shape = SubResource("RectangleShape2D_wbwk1")
+disabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
