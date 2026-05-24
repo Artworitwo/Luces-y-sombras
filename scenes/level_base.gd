@@ -61,9 +61,8 @@ func spawn_boss():
 	
 # Esta función se llama cuando la vida llega a cero
 func check_death():
-	if not multiplayer.is_server(): return
-
-	if PLAYER.health <= 0:
+	if !multiplayer.is_server(): return
+	if get_node("SandCointainer").get_node(str(multiplayer.get_unique_id())).health <= 0:
 		# Enviamos la orden a todos (incluyendo clientes)
 		show_game_over_screen.rpc()
 
