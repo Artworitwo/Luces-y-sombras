@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bib0afr4nbwl6"
-path="res://.godot/imported/playerWalkspritesheet.png-88a8769bf05e3f82f245729964ea179d.ctex"
+uid="uid://cdgbsm26k8jhg"
+path="res://.godot/imported/walklightskin.png-b1e7b6f9b2da76cbbe53560c76e53a20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://visual assets/playerWalkspritesheet.png"
-dest_files=["res://.godot/imported/playerWalkspritesheet.png-88a8769bf05e3f82f245729964ea179d.ctex"]
+source_file="res://visual assets/player/walklightskin.png"
+dest_files=["res://.godot/imported/walklightskin.png-b1e7b6f9b2da76cbbe53560c76e53a20.ctex"]
 
 [params]
 

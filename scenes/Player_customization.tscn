@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://eilmua7wmht7"]
+
+[ext_resource type="Script" uid="uid://c1x73gb6sfdr4" path="res://scenes/player_customization.gd" id="1_qhslp"]
+[ext_resource type="PackedScene" uid="uid://gd8be4axf4cd" path="res://scenes/entities/player/Player.tscn" id="2_ksvh5"]
+
+[node name="PlayerCustomization" type="Node2D" unique_id=1858921445]
+script = ExtResource("1_qhslp")
+
+[node name="siguienteskin" type="Button" parent="." unique_id=2004330450]
+offset_left = 646.0
+offset_top = -216.99998
+offset_right = 689.0
+offset_bottom = -185.99998
+scale = Vector2(1.76, 1.5200002)
+action_mode = 0
+text = "next"
+
+[node name="siguientehaircolor" type="Button" parent="." unique_id=68336273]
+offset_left = 649.0
+offset_top = 15.000008
+offset_right = 692.0
+offset_bottom = 46.000008
+scale = Vector2(1.76, 1.5200002)
+text = "next"
+
+[node name="anteriorskin" type="Button" parent="." unique_id=822258603]
+offset_left = 221.0
+offset_top = -214.0
+offset_right = 293.0
+offset_bottom = -183.0
+scale = Vector2(1.3599988, 1.3600006)
+text = "anterior"
+
+[node name="siguientehaircolor2" type="Button" parent="." unique_id=1365206023]
+offset_left = 223.00003
+offset_top = 8.9999695
+offset_right = 295.00003
+offset_bottom = 39.99997
+scale = Vector2(1.3599988, 1.3600006)
+text = "anterior"
+
+[node name="Label" type="Label" parent="." unique_id=1976286382]
+offset_left = 425.0
+offset_top = -287.99997
+offset_right = 520.0
+offset_bottom = -264.99997
+scale = Vector2(1.4799994, 1.8399999)
+text = "Tono de piel"
+
+[node name="Label2" type="Label" parent="." unique_id=1106744924]
+offset_left = 416.00003
+offset_top = -73.00001
+offset_right = 517.0
+offset_bottom = -50.000008
+scale = Vector2(1.7159878, 1.1229726)
+text = "Color cabello"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=365811545]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1792402607]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=634313891 instance=ExtResource("2_ksvh5")]
+is_preview = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=358241686]
+
+[connection signal="pressed" from="siguienteskin" to="." method="_on_siguienteskin_pressed"]
+[connection signal="pressed" from="anteriorskin" to="." method="_on_anteriorskin_pressed"]
