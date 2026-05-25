@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://koew54hlq3m2" path="res://scripts/safe_zone.gd" id="1_pno0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3kexe"]
+size = Vector2(6.2666664, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbwk1"]
-size = Vector2(19.28404, 20)
+size = Vector2(7.175353, 20)
 
 [node name="SafeZone" type="Node2D" unique_id=484487446]
 script = ExtResource("1_pno0a")
@@ -14,7 +15,7 @@ script = ExtResource("1_pno0a")
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=831643922]
-position = Vector2(-400, 0)
+position = Vector2(-600, 0)
 scale = Vector2(15, 15)
 shape = SubResource("RectangleShape2D_3kexe")
 disabled = true
@@ -23,7 +24,7 @@ disabled = true
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=2030792306]
-position = Vector2(400, 0)
+position = Vector2(600, 0)
 scale = Vector2(15, 15)
 shape = SubResource("RectangleShape2D_wbwk1")
 disabled = true

@@ -108,7 +108,7 @@ func procesar_movimiento():
 	# Aplicar velocidad y voltear sprite
 	velocity.x = direction * SPEED
 	animated_sprite.flip_h = (direction == -1)
-	hitbox_attack.position.x = -80 if direction == -1 else 0
+	hitbox_attack.scale.x = direction
 
 func morir_jugador():
 	is_dead = true

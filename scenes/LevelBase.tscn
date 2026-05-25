@@ -45,7 +45,7 @@ texture = ExtResource("2_f68rg")
 
 [node name="SafeZone" parent="." unique_id=484487446 instance=ExtResource("3_u2cq3")]
 position = Vector2(2, 177)
-scale = Vector2(0.9117488, 0.25731516)
+scale = Vector2(0.89808863, 0.42654288)
 
 [node name="Door" parent="." unique_id=891867125 instance=ExtResource("3_f68rg")]
 position = Vector2(18, -94)

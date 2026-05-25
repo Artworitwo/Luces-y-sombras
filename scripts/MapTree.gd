@@ -3,8 +3,8 @@ extends Node
 var Room1 = Room.new("", 20)
 var Room2 = Room.new("res://visual assets/Objects/BG2-Lab.png", 20)
 var Room3 = Room.new("res://visual assets/Objects/BG1-Lab-V2.png", 20)
-var Room4 = Room.new("image", 20)
-var Room5 = Room.new("image", 20)
+var Room4 = Room.new("res://visual assets/Objects/BG2-Lab.png", 20)
+var Room5 = Room.new("res://visual assets/Objects/BG1-Lab-V2.png", 20)
 var Rooms = [Room1, Room2, Room3, Room4, Room5]
 func _ready() -> void:
 	#este arbol es creado en base al del documento
@@ -12,13 +12,12 @@ func _ready() -> void:
 	Room1.DoorsTo.append(Room3)
 	Room2.DoorsTo.append(Room5)
 	Room3.DoorsTo.append(Room4)
-	Room3.DoorsTo.append(Room5)
-	Room4.DoorsTo.append(Room5)
-	
-	Room1.locked = false
+
 	Room2.locked = false
 	Room3.locked = false
 	
+	
+	Room1.addButton($TextureRect/Button1)
 	Room2.addButton($TextureRect/Button2)
 	Room3.addButton($TextureRect/Button3)
 	Room4.addButton($TextureRect/Button4)

@@ -25,15 +25,16 @@ func _ready():
 	
 	Perk1.unlock()
 	
-	Perk2.addButton($TextureRect/Button2)
-	Perk3.addButton($TextureRect/Button3)
-	Perk4.addButton($TextureRect/Button4)
-	Perk5.addButton($TextureRect/Button5)
-	Perk6.addButton($TextureRect/Button6)
-	Perk7.addButton($TextureRect/Button7)
-	Perk8.addButton($TextureRect/Button8)
-	Perk9.addButton($TextureRect/Button9)
-	Perk10.addButton($TextureRect/Button10)
+	Perk2.addButton($TextureRect/Button2, $TextureRect/img2)
+	Perk3.addButton($TextureRect/Button3, $TextureRect/img3)
+	Perk4.addButton($TextureRect/Button4, $TextureRect/img4)
+	Perk5.addButton($TextureRect/Button5, $TextureRect/img5)
+	Perk6.addButton($TextureRect/Button6, $TextureRect/img6)
+	Perk7.addButton($TextureRect/Button7, $TextureRect/img7)
+	Perk8.addButton($TextureRect/Button8, $TextureRect/img8)
+	Perk9.addButton($TextureRect/Button9, $TextureRect/img9)
+	Perk10.addButton($TextureRect/Button10, $TextureRect/img10)
+
 	
 func _process(delta):
 	for perk in perks:

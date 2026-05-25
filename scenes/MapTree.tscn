@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cjth262pmoftg" path="res://scripts/MapTree.gd" id="1_0iolm"]
 [ext_resource type="Texture2D" uid="uid://bg4clhln7bckk" path="res://visual assets/MapTree.jpg" id="2_leje1"]
+[ext_resource type="Texture2D" uid="uid://dxtf8555frfo2" path="res://visual assets/Objects/boton1NoPresionado.png" id="3_7glah"]
+[ext_resource type="Texture2D" uid="uid://d1glpunb1wcqf" path="res://visual assets/Objects/boton2NoPresionado.png" id="4_rberm"]
+[ext_resource type="Texture2D" uid="uid://b03edwcxdibf2" path="res://visual assets/Objects/boton3NoPresionado.png" id="5_6poiu"]
 
 [node name="MapTree" type="Node2D" unique_id=189906657]
 process_mode = 2
@@ -20,6 +23,67 @@ offset_bottom = 142.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_leje1")
+
+[node name="img1" type="TextureRect" parent="TextureRect" unique_id=2008768245]
+layout_mode = 0
+offset_left = -122.5
+offset_top = 24.500004
+offset_right = 477.5
+offset_bottom = 519.5
+scale = Vector2(0.8923166, 0.91910994)
+texture = ExtResource("3_7glah")
+
+[node name="img2" type="TextureRect" parent="TextureRect" unique_id=315816241]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -210.5
+offset_top = -65.5
+offset_right = 120.5
+offset_bottom = 144.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.83219296, 0.85684943)
+texture = ExtResource("4_rberm")
+
+[node name="img3" type="TextureRect" parent="TextureRect" unique_id=1541630056]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.5
+offset_top = -68.5
+offset_right = 210.5
+offset_bottom = 141.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.87278533, 0.8487722)
+texture = ExtResource("5_6poiu")
+
+[node name="img4" type="TextureRect" parent="TextureRect" unique_id=193888202]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="img5" type="TextureRect" parent="TextureRect" unique_id=632555887]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button1" type="Button" parent="TextureRect" unique_id=462818480]
+layout_mode = 0
+offset_left = 111.5
+offset_top = 222.5
+offset_right = 150.5
+offset_bottom = 260.5
+scale = Vector2(1.2613503, 1.179961)
 
 [node name="Button2" type="Button" parent="TextureRect" unique_id=24308249]
 layout_mode = 0
@@ -56,5 +120,18 @@ offset_top = 4.5
 offset_right = 263.0
 offset_bottom = 37.0
 text = "X"
+
+[node name="TextureRect2" type="ColorRect" parent="." unique_id=682317577]
+offset_left = -18.0
+offset_top = -78.0
+offset_right = 22.0
+offset_bottom = -33.0
+
+[node name="TextureRect3" type="ColorRect" parent="." unique_id=1790286161]
+offset_left = 44.14082
+offset_top = -107.36575
+offset_right = 127.484985
+offset_bottom = -59.365753
+rotation = 0.7414683
 
 [connection signal="pressed" from="TextureRect/Button6" to="." method="_on_button_6_pressed"]

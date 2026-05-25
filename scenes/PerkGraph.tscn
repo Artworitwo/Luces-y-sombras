@@ -2,9 +2,87 @@
 
 [ext_resource type="Script" uid="uid://cqixl8vg3dmj6" path="res://scripts/PerkGraph.gd" id="1_i5mhy"]
 [ext_resource type="Texture2D" uid="uid://bvn1isiyhca2q" path="res://visual assets/PerkGraph.jpg" id="2_udhwu"]
+[ext_resource type="Texture2D" uid="uid://dfwf6son4clyj" path="res://visual assets/Objects/botonAtaqueNoPresionado.png" id="3_f612j"]
+[ext_resource type="Texture2D" uid="uid://5gmh7jsj23ip" path="res://visual assets/Objects/botonCorazónNoPresionado.png" id="4_6pahg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f612j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pahg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2047"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yejio"]
+bg_color = Color(0.4627451, 0.4627451, 0.4627451, 0.76862746)
+corner_radius_top_left = 21
+corner_radius_top_right = 21
+corner_radius_bottom_right = 21
+corner_radius_bottom_left = 21
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jpkv3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ae4f6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1wfhn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sf47q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vks1c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_717g7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nijbk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4i5r4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rqtwm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75sag"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jj86h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vhb5x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dmvw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5srp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1iao"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tngpm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfumw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eyuis"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lfnay"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0j7vd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_27dvj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4vor"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijekm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1h3ba"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q8w6p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yfrae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vqgxn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_da41y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fljme"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7kwsm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5p18"]
 
 [node name="PerkGraph" type="Node2D" unique_id=1303490256]
 process_mode = 2
+position = Vector2(246, 388)
 script = ExtResource("1_i5mhy")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=87459382]
@@ -13,80 +91,239 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -283.0
-offset_top = -219.5
-offset_right = 283.0
-offset_bottom = 219.5
+offset_left = -356.0
+offset_top = -393.0
+offset_right = 210.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_udhwu")
 
+[node name="img2" type="TextureRect" parent="TextureRect" unique_id=1946049925]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -119.5
+offset_right = 588.0
+offset_bottom = 375.5
+texture = ExtResource("3_f612j")
+
+[node name="img3" type="TextureRect" parent="TextureRect" unique_id=2002076888]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -195.0
+offset_right = -46.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6pahg")
+
+[node name="img4" type="TextureRect" parent="TextureRect" unique_id=809836088]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = -196.0
+offset_right = 77.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6pahg")
+
+[node name="img5" type="TextureRect" parent="TextureRect" unique_id=2084257985]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 94.0
+offset_top = 56.0
+offset_right = 136.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6pahg")
+
+[node name="img6" type="TextureRect" parent="TextureRect" unique_id=215834572]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 229.0
+offset_top = 82.0
+offset_right = 263.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6pahg")
+
+[node name="img7" type="TextureRect" parent="TextureRect" unique_id=259613682]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.0
+offset_top = 153.0
+offset_right = 171.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6pahg")
+
+[node name="img8" type="TextureRect" parent="TextureRect" unique_id=632750286]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = 62.0
+offset_right = -90.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6pahg")
+
+[node name="img9" type="TextureRect" parent="TextureRect" unique_id=2146535176]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = 66.0
+offset_right = -202.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6pahg")
+
+[node name="img10" type="TextureRect" parent="TextureRect" unique_id=1217277604]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = 156.0
+offset_right = -127.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6pahg")
+
 [node name="Button2" type="Button" parent="TextureRect" unique_id=1965954542]
 layout_mode = 0
-offset_left = 252.0
-offset_top = 98.0
-offset_right = 299.0
-offset_bottom = 145.0
+offset_left = 245.0
+offset_top = 93.0
+offset_right = 306.0
+offset_bottom = 149.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f612j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6pahg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_f2047")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jpkv3")
 
 [node name="Button3" type="Button" parent="TextureRect" unique_id=292513944]
 layout_mode = 0
-offset_left = 184.0
-offset_top = 22.0
-offset_right = 231.0
-offset_bottom = 69.0
+offset_left = 178.0
+offset_top = 15.0
+offset_right = 238.0
+offset_bottom = 75.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ae4f6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1wfhn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sf47q")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vks1c")
 
 [node name="Button4" type="Button" parent="TextureRect" unique_id=1828627702]
 layout_mode = 0
-offset_left = 306.0
-offset_top = 20.0
-offset_right = 353.0
-offset_bottom = 67.0
+offset_left = 301.0
+offset_top = 16.0
+offset_right = 361.0
+offset_bottom = 73.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_717g7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nijbk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4i5r4")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rqtwm")
 
 [node name="Button5" type="Button" parent="TextureRect" unique_id=1924483797]
 layout_mode = 0
-offset_left = 361.0
-offset_top = 275.0
-offset_right = 408.0
-offset_bottom = 322.0
+offset_left = 355.0
+offset_top = 269.0
+offset_right = 416.0
+offset_bottom = 328.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_75sag")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jj86h")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vhb5x")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5dmvw")
 
 [node name="Button6" type="Button" parent="TextureRect" unique_id=1633892123]
 layout_mode = 0
-offset_left = 495.0
-offset_top = 298.0
-offset_right = 542.0
-offset_bottom = 345.0
+offset_left = 488.0
+offset_top = 292.0
+offset_right = 546.0
+offset_bottom = 350.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g5srp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1iao")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tngpm")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mfumw")
 
 [node name="Button7" type="Button" parent="TextureRect" unique_id=950639800]
 layout_mode = 0
-offset_left = 403.0
-offset_top = 369.0
-offset_right = 450.0
-offset_bottom = 416.0
+offset_left = 394.0
+offset_top = 364.0
+offset_right = 456.0
+offset_bottom = 423.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eyuis")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lfnay")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0j7vd")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_27dvj")
 
 [node name="Button8" type="Button" parent="TextureRect" unique_id=528349265]
 layout_mode = 0
-offset_left = 145.0
+offset_left = 133.0
 offset_top = 275.0
-offset_right = 192.0
-offset_bottom = 322.0
+offset_right = 191.60992
+offset_bottom = 328.0
+scale = Vector2(1.0335988, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_i4vor")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ijekm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1h3ba")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q8w6p")
 
 [node name="Button9" type="Button" parent="TextureRect" unique_id=1290899018]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 283.0
-offset_right = 76.0
-offset_bottom = 330.0
+offset_left = 20.0
+offset_top = 278.0
+offset_right = 83.0
+offset_bottom = 337.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yfrae")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vqgxn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_da41y")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
 
 [node name="Button10" type="Button" parent="TextureRect" unique_id=1054916706]
 layout_mode = 0
-offset_left = 101.0
-offset_top = 371.0
-offset_right = 148.0
-offset_bottom = 418.0
+offset_left = 96.0
+offset_top = 367.0
+offset_right = 158.0
+offset_bottom = 426.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fljme")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7kwsm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a5p18")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yejio")
 
 [node name="Button" type="Button" parent="TextureRect" unique_id=543856671]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 516.0
+offset_top = 8.5
+offset_right = 558.0
+offset_bottom = 51.5
+text = "X"
 
 [connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

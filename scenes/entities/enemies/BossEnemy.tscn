@@ -58,6 +58,9 @@ properties/7/replication_mode = 1
 properties/8/path = NodePath("HealthBar:value")
 properties/8/spawn = true
 properties/8/replication_mode = 1
+properties/9/path = NodePath(".:damage")
+properties/9/spawn = true
+properties/9/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fajd"]
 radius = 37.85
@@ -71,7 +74,6 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_7fajd")
 damage = 2
-health = 4
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=154076635]
 offset_left = -81.0

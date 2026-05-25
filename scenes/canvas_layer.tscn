@@ -9,9 +9,9 @@ script = ExtResource("1_c4rma")
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -440.0
-offset_right = 412.0
-offset_bottom = -206.0
+offset_top = -480.0
+offset_right = 333.0
+offset_bottom = -166.0
 grow_vertical = 2
 size_flags_horizontal = 4
 
@@ -38,6 +38,7 @@ text = "Potencia de Purificación:"
 
 [node name="Atack" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1009910803]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 
 [node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1311207574]
 layout_mode = 2
@@ -46,6 +47,8 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Enemigos Purificados en Total:"
+autowrap_mode = 2
 
 [node name="EneTotal" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1878966130]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
