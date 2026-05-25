@@ -127,6 +127,21 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("HitBoxAttack:scale")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath(".:cuerpo_actual")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("lightskinedbody:position")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("darkskinedbody:position")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("lightskinedbody:animation")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("darkskinedbody:animation")
+properties/10/spawn = true
+properties/10/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=634313891]
 collision_mask = 4

@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var timer = $Timer
 @onready var health_bar = $HealthBar # Asumiendo que tienes una ProgressBar como hijo
 @onready var special = $Special
+@onready var special2 = $Special2
+@onready var special3 = $Special3
 @onready var atackBox = $Hurtbox/CollisionShape2D
 
 var health 
@@ -15,7 +17,7 @@ var health_max: float = 4.0
 var current_floor = 3
 var attack_count = 0
 var is_invulnerable = true
-
+var was_in_air = false
 const JUMP_VELOCITY = -935.0
 
 enum STATE { SPAWN, IDLE, JUMP, DOWN, ATTACK, WEAKNESS, DEATH }
@@ -29,6 +31,8 @@ func _ready() -> void:
 	animated_sprite.play("spawn")
 	timer.start()
 	special.disabled = true
+	special2.disabled = true
+	special3.disabled = true
 	health = health_max
 	health_bar.value = (health / health_max) * 100
 	_iniciar_siguiente_decision() 
@@ -59,12 +63,14 @@ func _physics_process(delta: float) -> void:
 			is_invulnerable = true
 
 		STATE.IDLE:
+			reset_attack()
 			velocity.x = 0
 			if animated_sprite.animation != "idle":
 				animated_sprite.play("idle")
 			is_invulnerable = true
 
 		STATE.JUMP:
+			reset_attack()
 			if is_on_floor():
 				velocity.y = JUMP_VELOCITY
 			if animated_sprite.animation != "jump":
@@ -72,21 +78,12 @@ func _physics_process(delta: float) -> void:
 			is_invulnerable = true
 
 		STATE.DOWN:
+			reset_attack()
 			if is_on_floor():
 				position.y += 5 # Pequeño empujón para bajar plataformas "One-way"
 			is_invulnerable = true
 
 		STATE.ATTACK:
-			if animated_sprite.animation != "attack":
-				animated_sprite.play("attack")
-			animated_attack.visible = true
-			animated_attack.play("default")
-			special.disabled = false
-			await get_tree().create_timer(2.0).timeout
-			special.disabled = true
-			animated_attack.visible = false
-			current_state = STATE.WEAKNESS
-			timer.start(3.0)
 			is_invulnerable = true
 			
 
@@ -98,19 +95,24 @@ func _physics_process(delta: float) -> void:
 			if animated_sprite.animation != "weakness":
 				animated_sprite.play("weakness")
 				# Parpadeo visual de debilidad (Azul o Blanco)
-				#animated_sprite.modulate = Color(0.5, 0.5, 2.0) 
+			animated_sprite.modulate = Color(0.5, 0.5, 2.0) 
 
 		STATE.DEATH:
 			velocity = Vector2.ZERO
 			if animated_sprite.animation != "death":
 				animated_sprite.play("death")
 				# Avisar al nivel
-			if get_parent().get_parent().has_method("record_death"):
-				get_parent().get_parent().record_death()
-				get_parent().get_parent().boss_defeated()
-			queue_free()
 
 	move_and_slide()
+	if not is_on_floor():
+		was_in_air = true
+
+	elif was_in_air:
+		was_in_air = false
+	
+		if current_state == STATE.JUMP or current_state == STATE.DOWN:
+			current_state = STATE.IDLE
+
 
 # --- RECIBIR DAÑO ---
 func receive_damage () -> void:
@@ -124,10 +126,10 @@ func receive_damage () -> void:
 	health -= PLAYER.damage
 	if health_bar:
 		health_bar.value = (health / health_max) * 100
-	
+	is_invulnerable = false
 	# Feedback visual de daño (Flash rojo)
 	animated_sprite.modulate = Color(10, 1, 1) # Rojo intenso
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.2).timeout
 	if current_state == STATE.WEAKNESS:
 		animated_sprite.modulate = Color(0.5, 0.5, 2.0) # Vuelve a color debilidad
 	else:
@@ -135,30 +137,35 @@ func receive_damage () -> void:
 
 # --- SEÑALES DE ANIMACIÓN ---
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if (animated_sprite.animation == "spawn"):
-		current_state = STATE.IDLE
-		# Liberar a los jugadores para que empiece la pelea
-		get_tree().call_group("players", "cambiar_estado", 0) # 0 suele ser STATE.IDLE
-		_iniciar_siguiente_decision()
 	match current_state:
 		STATE.SPAWN:
 			current_state = STATE.IDLE
+			get_tree().call_group("players", "cambiar_estado", 0)
 			_iniciar_siguiente_decision()
 		STATE.JUMP, STATE.DOWN:
-			current_state = STATE.ATTACK
+			
+			start_attack()
 		STATE.ATTACK:
-			attack_count += 1
+			reset_attack()
+			
 			if attack_count >= 3:
 				current_state = STATE.WEAKNESS
 				timer.start(3.0) # Duración de la debilidad
 				
 			else:
+				current_state = STATE.IDLE
 				_iniciar_siguiente_decision()
+
+			
 		STATE.DEATH:
+			if get_parent().get_parent().has_method("record_death"):
+				get_parent().get_parent().record_death()
+				get_parent().get_parent().boss_defeated()
 			queue_free() 
 
 # --- DECISIONES ---
 func _on_timer_timeout() -> void:
+
 	if current_state == STATE.WEAKNESS:
 		# Se acabó el tiempo de debilidad
 		atackBox.disabled = false
@@ -177,10 +184,11 @@ func _on_timer_timeout() -> void:
 		current_floor -= 1
 		current_state = STATE.DOWN
 	else:
-		current_state = STATE.ATTACK
+		start_attack()
 
 func _iniciar_siguiente_decision():
 	damage = 2
+
 	timer.wait_time = randf_range(1.0, 2.5)
 	timer.start()
 
@@ -191,5 +199,21 @@ func _on_hurtbox_area_entered(body: Area2D) -> void:
 		else:
 			print("Es inmune en esta estado")
 			
-
+func start_attack():
+	if current_state == STATE.ATTACK:
+		return
+	current_state = STATE.ATTACK
+	animated_sprite.play("attack")
+	animated_attack.visible = true
+	animated_attack.play("default")
+	special.disabled = false
+	special2.disabled = false
+	special3.disabled = false
 			
+func reset_attack():
+	attack_count += 1
+	special.disabled = true
+	special2.disabled = true
+	special3.disabled = true
+
+	animated_attack.visible = false

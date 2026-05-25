@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://eilmua7wmht7"]
+[gd_scene format=3 uid="uid://yfccxektohu"]
 
 [ext_resource type="Script" uid="uid://c1x73gb6sfdr4" path="res://scenes/player_customization.gd" id="1_qhslp"]
 [ext_resource type="PackedScene" uid="uid://gd8be4axf4cd" path="res://scenes/entities/player/Player.tscn" id="2_ksvh5"]
@@ -69,5 +69,13 @@ is_preview = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=358241686]
 
+[node name="Button" type="Button" parent="." unique_id=820707589]
+offset_left = 734.0
+offset_top = -393.0
+offset_right = 780.0
+offset_bottom = -350.0
+text = "X"
+
 [connection signal="pressed" from="siguienteskin" to="." method="_on_siguienteskin_pressed"]
 [connection signal="pressed" from="anteriorskin" to="." method="_on_anteriorskin_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_salir_pressed"]

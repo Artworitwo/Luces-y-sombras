@@ -33,7 +33,7 @@ func _ready() -> void:
 
 	# Aplica la skin guardada en el Autoload (solo si no es preview)
 	if not is_preview:
-		cuerpo_actual = PLAYERCHARACTER.cuerpo_actual
+		cuerpo_actual = PLAYER.cuerpo_actual
 
 	_aplicar_cuerpo(cuerpo_actual)
 	if is_preview:
@@ -129,7 +129,7 @@ func procesar_movimiento():
 	# Aplicar velocidad y voltear sprite
 	velocity.x = direction * SPEED
 	animated_sprite.flip_h = (direction == -1)
-	hitbox_attack.scale.x = direction
+	hitbox_attack.position.x = -80 if direction == -1 else 0
 
 func morir_jugador():
 	is_dead = true

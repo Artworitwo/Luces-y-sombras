@@ -74,6 +74,15 @@ offset_bottom = 580.0
 scale = Vector2(4.136617, 1.663989)
 texture = ExtResource("4_66uhf")
 
+[node name="Button3" type="TextureRect" parent="." unique_id=248008106]
+layout_mode = 0
+offset_left = -450.0
+offset_top = 409.0
+offset_right = 274.0
+offset_bottom = 679.0
+scale = Vector2(4.136617, 1.663989)
+texture = ExtResource("4_66uhf")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1603323204]
 layout_mode = 1
 anchors_preset = 8
@@ -111,5 +120,17 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_o86d7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_c44yj")
 text = "UNIRSE "
 
+[node name="Skin" type="Button" parent="VBoxContainer" unique_id=1113641103]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l5o8d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nbm51")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a7q52")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_d4q7b")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o86d7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c44yj")
+text = "PERSONALIZAR "
+
 [connection signal="pressed" from="VBoxContainer/Server" to="." method="_on_server_pressed"]
 [connection signal="pressed" from="VBoxContainer/Client" to="." method="_on_client_pressed"]
+[connection signal="pressed" from="VBoxContainer/Skin" to="." method="_on_opciones_pressed"]

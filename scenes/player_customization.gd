@@ -47,20 +47,26 @@ func _ready() -> void:
 		
 	player.position = Vector2(150, 300)
 	# Inicia con la skin guardada
-	skin_actual = PLAYERCHARACTER.cuerpo_actual
+	skin_actual = PLAYER.cuerpo_actual
 	player.cambiar_cuerpo(skin_actual)
 
 func _on_siguienteskin_pressed() -> void:
 	skin_actual = (skin_actual + 1) % total_skins
 	player.cambiar_cuerpo(skin_actual)
-	PLAYERCHARACTER.cuerpo_actual = skin_actual  # guarda la elección
+	PLAYER.cuerpo_actual = skin_actual  # guarda la elección
+	
 
 func _on_anteriorskin_pressed() -> void:
 	skin_actual = (skin_actual - 1 + total_skins) % total_skins
 	player.cambiar_cuerpo(skin_actual)
-	PLAYERCHARACTER.cuerpo_actual = skin_actual  # guarda la elección
+	PLAYER.cuerpo_actual = skin_actual  # guarda la elección
+	
 
 func _imprimir_arbol(nodo: Node, nivel: int) -> void:
 	print("  ".repeat(nivel) + nodo.name + " (" + nodo.get_class() + ")")
 	for hijo in nodo.get_children():
 		_imprimir_arbol(hijo, nivel + 1)
+
+
+func _on_salir_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/Create.tscn")

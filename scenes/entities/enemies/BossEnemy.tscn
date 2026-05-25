@@ -38,13 +38,19 @@ properties/8/replication_mode = 1
 properties/9/path = NodePath(".:damage")
 properties/9/spawn = true
 properties/9/replication_mode = 1
+properties/10/path = NodePath("Special2:disabled")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("Special3:disabled")
+properties/11/spawn = true
+properties/11/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fajd"]
 radius = 37.85
 height = 132.08
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fajd"]
-size = Vector2(100, 140)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_127so"]
+size = Vector2(96.20141, 43.741966)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tcny"]
 atlas = ExtResource("5_4tcny")
@@ -84,10 +90,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0x6ke")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 7.0
+"speed": 3.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fajd"]
+size = Vector2(96.20141, 140)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_er2ni"]
 atlas = ExtResource("2_2w8jc")
@@ -266,9 +275,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s6gwy")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 4.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -298,7 +307,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vec3h")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -390,16 +399,28 @@ replication_config = SubResource("SceneReplicationConfig_7fajd")
 shape = SubResource("CapsuleShape2D_7fajd")
 
 [node name="Special" type="CollisionShape2D" parent="." unique_id=923362560]
-position = Vector2(-0.5, 0)
+position = Vector2(1.0000095, -19.999996)
 scale = Vector2(12.058036, 4.343655)
-shape = SubResource("RectangleShape2D_7fajd")
+shape = SubResource("RectangleShape2D_127so")
 debug_color = Color(0.71521574, 0.48385245, 0.07697027, 0.41960785)
 
 [node name="AnimatedSpecial" type="AnimatedSprite2D" parent="Special" unique_id=1478139418]
 scale = Vector2(0.5223103, 1.0736706)
 sprite_frames = SubResource("SpriteFrames_1nvm8")
-frame = 1
-frame_progress = 0.7739624
+frame = 4
+frame_progress = 1.0
+
+[node name="Special2" type="CollisionShape2D" parent="." unique_id=879717184]
+position = Vector2(1, 210)
+scale = Vector2(12.058036, 4.343655)
+shape = SubResource("RectangleShape2D_127so")
+debug_color = Color(0.71521574, 0.48385245, 0.07697027, 0.41960785)
+
+[node name="Special3" type="CollisionShape2D" parent="." unique_id=914658246]
+position = Vector2(-1, -274)
+scale = Vector2(12.058036, 4.343655)
+shape = SubResource("RectangleShape2D_127so")
+debug_color = Color(0.71521574, 0.48385245, 0.07697027, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1709302862]
 
@@ -412,8 +433,8 @@ debug_color = Color(0.9082612, 0.08154521, 0.70512456, 0.41960785)
 position = Vector2(0, -50)
 scale = Vector2(1.3600006, 0.95999986)
 sprite_frames = SubResource("SpriteFrames_7fajd")
-animation = &"jump"
-frame_progress = 0.4270227
+animation = &"attack"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -7,6 +7,7 @@ extends Node2D
 var passpoints = 0
 var boss_health_bonus = 0
 var levels_cleared = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	enemies_purified = 0
