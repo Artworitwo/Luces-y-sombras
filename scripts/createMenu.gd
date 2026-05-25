@@ -12,4 +12,5 @@ func _on_client_pressed() -> void:
 
 
 func _on_opciones_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Player_customization.tscn")
+	pass
+	#get_tree().change_scene_to_file("res://scenes/Player_customization.tscn")

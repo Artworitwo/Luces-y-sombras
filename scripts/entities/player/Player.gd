@@ -4,13 +4,8 @@ enum STATE { IDLE, WALK, JUMP, DEATH, CINEMATIC }
 var current_state = STATE.IDLE
 var local_player
 
-@onready var light_body: AnimatedSprite2D = $lightskinedbody
-@onready var dark_body: AnimatedSprite2D = $darkskinedbody
-var animated_sprite: AnimatedSprite2D 
-var cuerpos = []
-var cuerpo_actual = 0
+@onready var animated_sprite = $AnimatedSprite2D
 @onready var hitbox_attack = $HitBoxAttack
-@export var is_preview: bool = false
 
 var is_dead = false
 var health = 5
@@ -26,25 +21,10 @@ func _enter_tree():
 	position = Vector2(500, 500)
 	local_player = self
 func _ready() -> void:
-	await get_tree().process_frame
-	print("light_body: ", light_body)
-	print("dark_body: ", dark_body)
-	cuerpos = [light_body, dark_body]
-
-	# Aplica la skin guardada en el Autoload (solo si no es preview)
-	if not is_preview:
-		cuerpo_actual = PLAYER.cuerpo_actual
-
-	_aplicar_cuerpo(cuerpo_actual)
-	if is_preview:
-		set_physics_process(false)
-		set_process(false)
-		return
-	
 	# Agregamos una pequeña espera de seguridad para el multijugador
 	if is_multiplayer_authority():
 		local_player = self
-	if light_body == null or dark_body == null:
+	if animated_sprite == null:
 		print("ERROR: No encontré el AnimatedSprite2D. Revisa el nombre en el árbol de nodos.")
 		return
 	current_state = STATE.WALK
@@ -112,7 +92,6 @@ func cambiar_estado(nuevo_estado):
 			animated_sprite.play("idle")
 
 func procesar_movimiento():
-	if animated_sprite == null: return
 	# Cambio de dirección por pared
 	if is_on_wall():
 		direction *= -1
@@ -129,7 +108,7 @@ func procesar_movimiento():
 	# Aplicar velocidad y voltear sprite
 	velocity.x = direction * SPEED
 	animated_sprite.flip_h = (direction == -1)
-	hitbox_attack.position.x = -80 if direction == -1 else 0
+	hitbox_attack.scale.x = direction
 
 func morir_jugador():
 	is_dead = true
@@ -218,27 +197,7 @@ func boostall():
 			var peer_id = child.get_multiplayer_authority()
 			var player = get_parent().get_node(str(peer_id))
 			player.damage += 1
-	#PLAYER.damage = damage
-	
-func _aplicar_cuerpo(index: int) -> void:
-	if cuerpos.is_empty() or index >= cuerpos.size():
-		push_error("cuerpos[] no está inicializado o índice fuera de rango")
-		return
-	for c in cuerpos:
-		if c != null:
-			c.visible = false
-	if cuerpos[index] != null:
-		cuerpos[index].visible = true
-		animated_sprite = cuerpos[index]
-
-func cambiar_cuerpo(index: int) -> void:
-	var anim_actual: String = "idle"
-	if animated_sprite != null:
-		anim_actual = animated_sprite.animation
-	cuerpo_actual = index
-	_aplicar_cuerpo(cuerpo_actual)
-	if animated_sprite != null:
-		animated_sprite.play(anim_actual)
+	PLAYER.damage = damage
 
 	#for player in get_parent().get_children():
 		#if player is CharacterBody2D:

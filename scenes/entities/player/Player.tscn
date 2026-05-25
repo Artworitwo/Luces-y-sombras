@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://gd8be4axf4cd"]
 
 [ext_resource type="Script" uid="uid://l8gdybhpsny6" path="res://scripts/entities/player/Player.gd" id="1_gfd2q"]
-[ext_resource type="Texture2D" uid="uid://cdgbsm26k8jhg" path="res://visual assets/player/walklightskin.png" id="2_n1xdv"]
-[ext_resource type="Texture2D" uid="uid://dxplru8x6oyg" path="res://visual assets/player/walkdarkskin.png" id="3_30dhn"]
+[ext_resource type="Texture2D" uid="uid://bib0afr4nbwl6" path="res://visual assets/playerWalkspritesheet.png" id="2_afppm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afppm"]
 radius = 30.0
@@ -15,21 +14,21 @@ height = 112.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7yqy"]
 size = Vector2(50, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqwkw"]
-atlas = ExtResource("2_n1xdv")
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1xdv"]
+atlas = ExtResource("2_afppm")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hgjck"]
-atlas = ExtResource("2_n1xdv")
+[sub_resource type="AtlasTexture" id="AtlasTexture_30dhn"]
+atlas = ExtResource("2_afppm")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ppr6r"]
-atlas = ExtResource("2_n1xdv")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rx1o7"]
-atlas = ExtResource("2_n1xdv")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqwkw"]
+atlas = ExtResource("2_afppm")
 region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgjck"]
+atlas = ExtResource("2_afppm")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ekfw"]
 resource_local_to_scene = true
@@ -46,62 +45,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_n1xdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30dhn")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rqwkw")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hgjck")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ppr6r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rx1o7")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqk8h"]
-atlas = ExtResource("3_30dhn")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_20ow7"]
-atlas = ExtResource("3_30dhn")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ujgbh"]
-atlas = ExtResource("3_30dhn")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6htgn"]
-atlas = ExtResource("3_30dhn")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ovfj8"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"death",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"spawn",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rqk8h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_20ow7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ujgbh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6htgn")
 }],
 "loop": true,
 "name": &"walk",
@@ -127,21 +80,6 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("HitBoxAttack:scale")
 properties/5/spawn = true
 properties/5/replication_mode = 1
-properties/6/path = NodePath(".:cuerpo_actual")
-properties/6/spawn = true
-properties/6/replication_mode = 1
-properties/7/path = NodePath("lightskinedbody:position")
-properties/7/spawn = true
-properties/7/replication_mode = 1
-properties/8/path = NodePath("darkskinedbody:position")
-properties/8/spawn = true
-properties/8/replication_mode = 1
-properties/9/path = NodePath("lightskinedbody:animation")
-properties/9/spawn = true
-properties/9/replication_mode = 1
-properties/10/path = NodePath("darkskinedbody:animation")
-properties/10/spawn = true
-properties/10/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=634313891]
 collision_mask = 4
@@ -170,20 +108,12 @@ collision_mask = 2
 position = Vector2(50, 0)
 shape = SubResource("RectangleShape2D_u7yqy")
 
-[node name="lightskinedbody" type="AnimatedSprite2D" parent="." unique_id=65774124]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=65774124]
 position = Vector2(0, 1.1920929e-07)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_3ekfw")
 animation = &"walk"
-frame_progress = 0.611154
 speed_scale = 2.3
-
-[node name="darkskinedbody" type="AnimatedSprite2D" parent="." unique_id=1605467662]
-scale = Vector2(3.5, 3.5)
-sprite_frames = SubResource("SpriteFrames_ovfj8")
-animation = &"walk"
-frame = 1
-frame_progress = 0.94782555
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1391398642]
 replication_config = SubResource("SceneReplicationConfig_afppm")

@@ -44,6 +44,9 @@ properties/10/replication_mode = 1
 properties/11/path = NodePath("Special3:disabled")
 properties/11/spawn = true
 properties/11/replication_mode = 1
+properties/12/path = NodePath("Special/AnimatedSpecial:visible")
+properties/12/spawn = true
+properties/12/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fajd"]
 radius = 37.85
