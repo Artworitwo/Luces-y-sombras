@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var speed_horizontal: int 
 @export var damage: int
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_attack= $Special/AnimatedSpecial
 @onready var timer = $Timer
 @onready var health_bar = $HealthBar # Asumiendo que tienes una ProgressBar como hijo
 @onready var special = $Special
@@ -32,6 +33,7 @@ func _ready() -> void:
 	health_bar.value = (health / health_max) * 100
 	_iniciar_siguiente_decision() 
 	print("Diva inicializada y pensando...")
+	animated_attack.visible = false
 
 func _physics_process(delta: float) -> void:
 	# Soporte para multijugador
@@ -77,9 +79,12 @@ func _physics_process(delta: float) -> void:
 		STATE.ATTACK:
 			if animated_sprite.animation != "attack":
 				animated_sprite.play("attack")
+			animated_attack.visible = true
+			animated_attack.play("default")
 			special.disabled = false
 			await get_tree().create_timer(2.0).timeout
 			special.disabled = true
+			animated_attack.visible = false
 			current_state = STATE.WEAKNESS
 			timer.start(3.0)
 			is_invulnerable = true
@@ -93,7 +98,7 @@ func _physics_process(delta: float) -> void:
 			if animated_sprite.animation != "weakness":
 				animated_sprite.play("weakness")
 				# Parpadeo visual de debilidad (Azul o Blanco)
-				animated_sprite.modulate = Color(0.5, 0.5, 2.0) 
+				#animated_sprite.modulate = Color(0.5, 0.5, 2.0) 
 
 		STATE.DEATH:
 			velocity = Vector2.ZERO
@@ -178,7 +183,6 @@ func _iniciar_siguiente_decision():
 	damage = 2
 	timer.wait_time = randf_range(1.0, 2.5)
 	timer.start()
-
 
 func _on_hurtbox_area_entered(body: Area2D) -> void:
 	if body.name == "HitBoxAttack":
