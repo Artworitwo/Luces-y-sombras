@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://gd8be4axf4cd" path="res://scenes/entities/player/Player.tscn" id="1_5vqh1"]
 [ext_resource type="Script" uid="uid://brh8rgju0noeh" path="res://scenes/level_base.gd" id="1_w66m8"]
-[ext_resource type="Texture2D" uid="uid://celencrlkpb5j" path="res://visual assets/Objects/BG1-Lab-Corregido.png" id="2_f68rg"]
 [ext_resource type="PackedScene" uid="uid://dtaegdgayvf5d" path="res://scenes/canvas_layer.tscn" id="2_rfti0"]
 [ext_resource type="PackedScene" uid="uid://dt62co07ni8yw" path="res://scenes/entities/enemies/Boxer.tscn" id="2_yn5qj"]
 [ext_resource type="PackedScene" uid="uid://cw410dsw354k8" path="res://scenes/Objects/character_body_2d.tscn" id="3_f68rg"]
 [ext_resource type="PackedScene" uid="uid://cgjk8n3sf13q3" path="res://scenes/entities/enemies/Spawner.tscn" id="3_jguw4"]
+[ext_resource type="Texture2D" uid="uid://vymv0n38uo24" path="res://visual assets/Objects/BG1-Lab-V2.png" id="3_rfti0"]
 [ext_resource type="PackedScene" uid="uid://d08i05bjgjvtc" path="res://scripts/SafeZone.tscn" id="3_u2cq3"]
 [ext_resource type="PackedScene" uid="uid://q55i1d4s0id0" path="res://scenes/PerkGraph.tscn" id="5_rfti0"]
 [ext_resource type="Script" uid="uid://dn6lwpxoswap1" path="res://scripts/playerSpawn.gd" id="5_thxwb"]
@@ -41,14 +41,14 @@ goal_enemies_purified = 2
 position = Vector2(0.9999995, -23.999998)
 rotation = 3.1415927
 scale = Vector2(2.008668, -1.9814253)
-texture = ExtResource("2_f68rg")
+texture = ExtResource("3_rfti0")
 
 [node name="SafeZone" parent="." unique_id=484487446 instance=ExtResource("3_u2cq3")]
 position = Vector2(2, 177)
 scale = Vector2(0.89808863, 0.42654288)
 
 [node name="Door" parent="." unique_id=891867125 instance=ExtResource("3_f68rg")]
-position = Vector2(18, -94)
+position = Vector2(15, -97)
 
 [node name="SandCointainer" type="Node2D" parent="." unique_id=1375854088]
 position = Vector2(-960, -510)
