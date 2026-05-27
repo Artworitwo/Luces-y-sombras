@@ -158,3 +158,6 @@ scale = Vector2(2.184, 1.8)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=176564209]
 replication_config = SubResource("SceneReplicationConfig_rfti0")
+
+[node name="Player" parent="." unique_id=634313891 instance=ExtResource("1_5vqh1")]
+visible = false

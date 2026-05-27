@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://gd8be4axf4cd"]
 
 [ext_resource type="Script" uid="uid://l8gdybhpsny6" path="res://scripts/entities/player/Player.gd" id="1_gfd2q"]
-[ext_resource type="Texture2D" uid="uid://bib0afr4nbwl6" path="res://visual assets/playerWalkspritesheet.png" id="2_afppm"]
+[ext_resource type="Texture2D" uid="uid://cpie4m05mrac8" path="res://visual assets/player/spawnli.png" id="2_rqwkw"]
+[ext_resource type="Texture2D" uid="uid://cdgbsm26k8jhg" path="res://visual assets/player/walklightskin.png" id="3_hgjck"]
+[ext_resource type="Texture2D" uid="uid://ddti7x51jrtgk" path="res://visual assets/player/spawndar.png" id="4_ppr6r"]
+[ext_resource type="Texture2D" uid="uid://dxplru8x6oyg" path="res://visual assets/player/walkdarkskin.png" id="5_rx1o7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afppm"]
 radius = 30.0
@@ -14,23 +17,52 @@ height = 112.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7yqy"]
 size = Vector2(50, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n1xdv"]
-atlas = ExtResource("2_afppm")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_afppm"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("HitBoxAttack:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("HitBoxAttack:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:current_state")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:direction")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_30dhn"]
-atlas = ExtResource("2_afppm")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqwkw"]
-atlas = ExtResource("2_afppm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovfj8"]
+atlas = ExtResource("2_rqwkw")
 region = Rect2(64, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_68iwh"]
+atlas = ExtResource("2_rqwkw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ethid"]
+atlas = ExtResource("2_rqwkw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqwkw"]
+atlas = ExtResource("3_hgjck")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgjck"]
-atlas = ExtResource("2_afppm")
+atlas = ExtResource("3_hgjck")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppr6r"]
+atlas = ExtResource("3_hgjck")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3ekfw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx1o7"]
+atlas = ExtResource("3_hgjck")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqk8h"]
 resource_local_to_scene = true
 animations = [{
 "frames": [],
@@ -38,48 +70,104 @@ animations = [{
 "name": &"death",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovfj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68iwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ethid")
+}],
 "loop": true,
 "name": &"spawn",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n1xdv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_30dhn")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_rqwkw")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hgjck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppr6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx1o7")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 3.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_afppm"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("AnimatedSprite2D:animation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("AnimatedSprite2D:flip_h")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("HitBoxAttack:position")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("AnimatedSprite2D:frame")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("HitBoxAttack:scale")
-properties/5/spawn = true
-properties/5/replication_mode = 1
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3eos"]
+atlas = ExtResource("4_ppr6r")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plywm"]
+atlas = ExtResource("4_ppr6r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynxqy"]
+atlas = ExtResource("4_ppr6r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20ow7"]
+atlas = ExtResource("5_rx1o7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqk8h"]
+atlas = ExtResource("5_rx1o7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujgbh"]
+atlas = ExtResource("5_rx1o7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6htgn"]
+atlas = ExtResource("5_rx1o7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_20ow7"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3eos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plywm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynxqy")
+}],
+"loop": true,
+"name": &"spawn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20ow7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqk8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujgbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6htgn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [node name="Player" type="CharacterBody2D" unique_id=634313891]
 collision_mask = 4
@@ -108,15 +196,20 @@ collision_mask = 2
 position = Vector2(50, 0)
 shape = SubResource("RectangleShape2D_u7yqy")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=65774124]
-position = Vector2(0, 1.1920929e-07)
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1391398642]
+replication_config = SubResource("SceneReplicationConfig_afppm")
+
+[node name="Lightskinedbody" type="AnimatedSprite2D" parent="." unique_id=1386339047]
+position = Vector2(0, 4.172325e-07)
 scale = Vector2(3.5, 3.5)
-sprite_frames = SubResource("SpriteFrames_3ekfw")
+sprite_frames = SubResource("SpriteFrames_rqk8h")
 animation = &"walk"
 speed_scale = 2.3
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1391398642]
-replication_config = SubResource("SceneReplicationConfig_afppm")
+[node name="Darkskinedbody" type="AnimatedSprite2D" parent="." unique_id=165764749]
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_20ow7")
+animation = &"death"
 
 [connection signal="body_entered" from="HitBoxPlayer" to="." method="_on_hit_box_player_body_entered"]
 [connection signal="body_entered" from="HitBoxAttack" to="." method="_on_hit_box_attack_body_entered"]

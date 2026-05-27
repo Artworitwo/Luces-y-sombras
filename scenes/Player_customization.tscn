@@ -1,7 +1,145 @@
 [gd_scene format=3 uid="uid://yfccxektohu"]
 
 [ext_resource type="Script" uid="uid://c1x73gb6sfdr4" path="res://scenes/player_customization.gd" id="1_qhslp"]
-[ext_resource type="PackedScene" uid="uid://gd8be4axf4cd" path="res://scenes/entities/player/Player.tscn" id="2_ksvh5"]
+[ext_resource type="Texture2D" uid="uid://cpie4m05mrac8" path="res://visual assets/player/spawnli.png" id="2_kwx1d"]
+[ext_resource type="Texture2D" uid="uid://cdgbsm26k8jhg" path="res://visual assets/player/walklightskin.png" id="3_fngc6"]
+[ext_resource type="Texture2D" uid="uid://ddti7x51jrtgk" path="res://visual assets/player/spawndar.png" id="4_728jl"]
+[ext_resource type="Texture2D" uid="uid://dxplru8x6oyg" path="res://visual assets/player/walkdarkskin.png" id="5_14w78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovfj8"]
+atlas = ExtResource("2_kwx1d")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68iwh"]
+atlas = ExtResource("2_kwx1d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ethid"]
+atlas = ExtResource("2_kwx1d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqwkw"]
+atlas = ExtResource("3_fngc6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgjck"]
+atlas = ExtResource("3_fngc6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppr6r"]
+atlas = ExtResource("3_fngc6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx1o7"]
+atlas = ExtResource("3_fngc6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2mikx"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovfj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68iwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ethid")
+}],
+"loop": true,
+"name": &"spawn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqwkw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgjck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppr6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx1o7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3eos"]
+atlas = ExtResource("4_728jl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plywm"]
+atlas = ExtResource("4_728jl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynxqy"]
+atlas = ExtResource("4_728jl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20ow7"]
+atlas = ExtResource("5_14w78")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqk8h"]
+atlas = ExtResource("5_14w78")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujgbh"]
+atlas = ExtResource("5_14w78")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6htgn"]
+atlas = ExtResource("5_14w78")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b2elq"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3eos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plywm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynxqy")
+}],
+"loop": true,
+"name": &"spawn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20ow7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqk8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujgbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6htgn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [node name="PlayerCustomization" type="Node2D" unique_id=1858921445]
 script = ExtResource("1_qhslp")
@@ -55,17 +193,19 @@ offset_bottom = -50.000008
 scale = Vector2(1.7159878, 1.1229726)
 text = "Color cabello"
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=365811545]
-offset_right = 40.0
-offset_bottom = 40.0
-size_flags_horizontal = 0
+[node name="Lightskinedbody" type="AnimatedSprite2D" parent="." unique_id=1318548309]
+position = Vector2(-527, 0)
+scale = Vector2(12.5, 12.5)
+sprite_frames = SubResource("SpriteFrames_2mikx")
+animation = &"spawn"
+frame_progress = 0.25904176
+speed_scale = 2.3
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1792402607]
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=634313891 instance=ExtResource("2_ksvh5")]
-is_preview = true
+[node name="Darkskinedbody" type="AnimatedSprite2D" parent="." unique_id=983798665]
+position = Vector2(-527, 0)
+scale = Vector2(12.5, 12.5)
+sprite_frames = SubResource("SpriteFrames_b2elq")
+animation = &"walk"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=358241686]
 
