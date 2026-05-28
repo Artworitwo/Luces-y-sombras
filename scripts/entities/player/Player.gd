@@ -11,9 +11,9 @@ var cuerpo_actual: int = 0
 @export var is_preview: bool = false
 
 var is_dead = false
-var health = 5
+var health = 1
 var max_health: float = 5.0
-var damage = 1
+var damage = 5
 var direction = 1
 var SPEED = 300.0
 var perkpoints: int = 0
@@ -24,11 +24,26 @@ func _enter_tree():
 	position = Vector2(500, 500)
 func _ready() -> void:
 	
+
 	for s in find_children("*", "AnimatedSprite2D", true, false):
 		cuerpos.append(s as AnimatedSprite2D)
 		print(s)
 	if cuerpos==null:
 		push_error("No se encontraron los AnimatedSprite2D")
+
+	# Agregamos una pequeña espera de seguridad para el multijugador
+	if is_multiplayer_authority():
+		local_player = self
+		
+	health = max_health
+	is_dead = false
+	# 1. EL SEGURO: Si esta ventana NO es la que el usuario clickeó, ignoramos el control
+	if not get_window().has_focus():
+		velocity.x = 0 # Frenamos al personaje para que no se quede caminando solo
+		return # Abortamos la lectura de botones
+	if animated_sprite == null:
+		print("ERROR: No encontré el AnimatedSprite2D. Revisa el nombre en el árbol de nodos.")
+
 		return
 		
 	_aplicar_cuerpo(cuerpo_actual)
@@ -132,18 +147,24 @@ func procesar_movimiento():
 
 	# Aplicar velocidad y voltear sprite
 	velocity.x = direction * SPEED
+
 	if animated_sprite:
 		animated_sprite.flip_h = (direction == -1)
 	if hitbox_attack:
 		hitbox_attack.scale.x = direction
 		hitbox_attack.position.x = -80 if direction == -1 else 0
 
+	
+
+
 func morir_jugador():
 	is_dead = true
 	velocity = Vector2.ZERO
+	
 	if animated_sprite:
 		animated_sprite.play("death")
 		await animated_sprite.animation_finished
+
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://ui/GameOver.tscn")
 

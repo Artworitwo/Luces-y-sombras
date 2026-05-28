@@ -19,3 +19,7 @@ func _on_reboot_pressed() -> void:
 	
 	# 3. Volver a la escena inicial
 	get_tree().change_scene_to_file("res://scenes/Create.tscn")
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()

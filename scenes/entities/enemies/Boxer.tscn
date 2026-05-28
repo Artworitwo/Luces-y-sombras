@@ -183,7 +183,7 @@ animations = [{
 [node name="CharacterBody2D2" unique_id=431144609 instance=ExtResource("1_gi01p")]
 collision_layer = 2
 collision_mask = 4
-speed = 200
+speed = 170
 direction = -1
 damage = 1
 
