@@ -1,18 +1,53 @@
 [gd_scene format=3 uid="uid://dtaegdgayvf5d"]
 
 [ext_resource type="Script" uid="uid://c5pr42wuc103o" path="res://scenes/Estadisticas.gd" id="1_c4rma"]
+[ext_resource type="Texture2D" uid="uid://bundl8wixf6yt" path="res://visual assets/Objects/BOTON MENU PRINCIPAL.png" id="2_ghj5q"]
+
+[sub_resource type="Gradient" id="Gradient_c4rma"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghj5q"]
+gradient = SubResource("Gradient_c4rma")
+
+[sub_resource type="FontVariation" id="FontVariation_ek3oe"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=952852309]
 script = ExtResource("1_c4rma")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1887684664]
+modulate = Color(0, 0.9098039, 0.91764706, 0.11764706)
+offset_left = -1225.0
+offset_top = 6.9999995
+offset_right = -969.0
+offset_bottom = 47.0
+scale = Vector2(15.112682, 26.866104)
+texture = SubResource("GradientTexture1D_ghj5q")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1451354967]
+offset_left = -454.00003
+offset_top = -36.0
+offset_right = 25.99997
+offset_bottom = 234.0
+scale = Vector2(2.759378, 2.7846024)
+texture = ExtResource("2_ghj5q")
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=482357012]
+offset_left = -452.00003
+offset_top = -259.99997
+offset_right = 27.99997
+offset_bottom = 10.0000305
+scale = Vector2(2.759378, 6.144603)
+texture = ExtResource("2_ghj5q")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=778967265]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -480.0
-offset_right = 333.0
-offset_bottom = -166.0
+offset_left = 31.0
+offset_top = -225.0
+offset_right = 364.0
+offset_bottom = 220.0
 grow_vertical = 2
+scale = Vector2(0.83999914, 1)
 size_flags_horizontal = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1714684978]
@@ -24,17 +59,26 @@ layout_mode = 2
 
 [node name="HealthLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=42238268]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_ek3oe")
 theme_override_font_sizes/font_size = 28
-text = "Vida "
+text = "                   Vida "
+uppercase = true
 
 [node name="Healthbar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=151762195]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1498619941]
+layout_mode = 2
+text = "
+
+"
+
 [node name="AtackLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1041238569]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 24
 text = "Potencia de Purificación:"
+uppercase = true
 
 [node name="Atack" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1009910803]
 layout_mode = 2
@@ -45,9 +89,10 @@ layout_mode = 2
 
 [node name="EneTotalLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1061716722]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Enemigos Purificados en Total:"
+theme_override_font_sizes/font_size = 26
+text = "Enemigos Purificados:"
 autowrap_mode = 2
+uppercase = true
 
 [node name="EneTotal" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1878966130]
 layout_mode = 2

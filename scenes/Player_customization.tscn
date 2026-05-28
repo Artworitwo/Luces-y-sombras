@@ -533,9 +533,9 @@ action_mode = 0
 
 [node name="siguientehaircolor" type="Button" parent="." unique_id=68336273]
 modulate = Color(1, 1, 1, 0)
-offset_left = 409.0
+offset_left = 408.99997
 offset_top = 145.0
-offset_right = 452.0
+offset_right = 451.99997
 offset_bottom = 176.0
 scale = Vector2(9.639998, 3.6400003)
 
