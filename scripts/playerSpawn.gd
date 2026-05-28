@@ -22,5 +22,12 @@ func spawn_player(id:int)-> void:
 	player.set_multiplayer_authority(id)
 	player.cuerpo_actual = CREATE.skins_por_jugador.get(id, 0)
 	get_node(spawn_path).call_deferred("add_child", player)
+	_sync_skin_delayed.call_deferred(player)
+	
+func _sync_skin_delayed(player: Node) -> void:
+	await get_tree().process_frame
+	await get_tree().process_frame
+	if is_instance_valid(player):
+		player._sync_skin.rpc(player.cuerpo_actual)
 
 	
