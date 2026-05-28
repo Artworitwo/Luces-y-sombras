@@ -12,6 +12,7 @@ var final_level = false
 func _ready() -> void:
 	enemies_purified = 0
 	door = $Door
+	goal_enemies_purified = 7
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -99,7 +100,7 @@ func changeBack(tex_path:String):
 	else:
 		get_tree().call_group("spawners", "activar_fabrica")
 		enemies_purified = 0
-		goal_enemies_purified += 3
+		goal_enemies_purified += 5
 		$SafeZone.apagarAreas()
 	
 func showMap(visible :bool):

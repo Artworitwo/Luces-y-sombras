@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvn1isiyhca2q" path="res://visual assets/PerkGraph.jpg" id="2_udhwu"]
 [ext_resource type="Texture2D" uid="uid://dfwf6son4clyj" path="res://visual assets/Objects/botonAtaqueNoPresionado.png" id="3_f612j"]
 [ext_resource type="Texture2D" uid="uid://5gmh7jsj23ip" path="res://visual assets/Objects/botonCorazónNoPresionado.png" id="4_6pahg"]
+[ext_resource type="Texture2D" uid="uid://vvufswmc5fn5" path="res://visual assets/Objects/boton1Presionado.png" id="5_6pahg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f612j"]
 
@@ -210,6 +211,20 @@ offset_bottom = 212.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_6pahg")
+
+[node name="img11" type="TextureRect" parent="TextureRect" unique_id=2028981968]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -2.0000305
+offset_right = 42.0
+offset_bottom = 53.99997
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.93853253, 0.94728684)
+texture = ExtResource("5_6pahg")
 
 [node name="Button2" type="Button" parent="TextureRect" unique_id=1965954542]
 layout_mode = 0

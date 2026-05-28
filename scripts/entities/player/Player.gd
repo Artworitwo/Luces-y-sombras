@@ -15,9 +15,9 @@ var hairs: Array = []
 var animated_hair: AnimatedSprite2D
 
 var is_dead = false
-var health = 100
+var health = 5
 var max_health: float = 5.0
-var damage = 5
+var damage = 1
 var direction = 1
 var SPEED = 300.0
 var perkpoints: int = 0
