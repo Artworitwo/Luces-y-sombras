@@ -14,6 +14,7 @@ gradient = SubResource("Gradient_c4rma")
 script = ExtResource("1_c4rma")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1887684664]
+visible = false
 modulate = Color(0, 0.9098039, 0.91764706, 0.11764706)
 offset_left = -1225.0
 offset_top = 6.9999995
@@ -23,6 +24,7 @@ scale = Vector2(15.112682, 26.866104)
 texture = SubResource("GradientTexture1D_ghj5q")
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1451354967]
+visible = false
 offset_left = -454.00003
 offset_top = -36.0
 offset_right = 25.99997
@@ -31,6 +33,7 @@ scale = Vector2(2.759378, 2.7846024)
 texture = ExtResource("2_ghj5q")
 
 [node name="TextureRect3" type="TextureRect" parent="." unique_id=482357012]
+visible = false
 offset_left = -452.00003
 offset_top = -259.99997
 offset_right = 27.99997
