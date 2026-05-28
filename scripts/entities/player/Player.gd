@@ -48,6 +48,9 @@ func _ready() -> void:
 
 	current_state = STATE.IDLE
 	cambiar_estado(STATE.IDLE)
+	
+	if not multiplayer.is_server():
+		_solicitar_skins.rpc_id(1)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -106,7 +109,7 @@ func cambiar_estado(nuevo_estado):
 			direction = 0
 			animated_sprite.play("idle")
 
-@rpc("authority", "call_remote")
+@rpc("any_peer", "call_remote")
 func _sync_estado(estado: int) -> void:
 	current_state = estado
 	if animated_sprite == null: return
@@ -226,3 +229,11 @@ func _sync_skin(index: int) -> void:
 	_aplicar_cuerpo(index)
 	if animated_sprite:
 		animated_sprite.play("idle")
+		
+@rpc("any_peer")
+func _solicitar_skins() -> void:
+	if not multiplayer.is_server(): return
+	var solicitante = multiplayer.get_remote_sender_id()
+	for hijo in get_parent().get_children():
+		if hijo is CharacterBody2D and hijo.has_method("_sync_skin"):
+			hijo._sync_skin.rpc_id(solicitante, hijo.cuerpo_actual)

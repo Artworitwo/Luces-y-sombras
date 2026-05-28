@@ -21,9 +21,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PLAYER="*uid://l8gdybhpsny6"
 LEVELBASE="*uid://brh8rgju0noeh"
 CREATE="*uid://cbhtbehx5kmcn"
+PLAYER="*uid://bjy23wnkavqs"
 
 [display]
 
