@@ -3,8 +3,8 @@ extends Node
 var Room1 = Room.new("", 20)
 var Room2 = Room.new("res://visual assets/Objects/BG2-Lab.png", 20)
 var Room3 = Room.new("res://visual assets/Objects/BG1-Lab-V2.png", 20)
-var Room4 = Room.new("res://visual assets/Objects/BG2-Lab.png", 20)
-var Room5 = Room.new("res://visual assets/Objects/BG1-Lab-V2.png", 20)
+var Room4 = Room.new("res://visual assets/Objects/BG2-Lab.png", 30)
+var Room5 = Room.new("res://visual assets/Objects/BG1-Lab-V2.png", 30)
 var Rooms = [Room1, Room2, Room3, Room4, Room5]
 func _ready() -> void:
 	#este arbol es creado en base al del documento

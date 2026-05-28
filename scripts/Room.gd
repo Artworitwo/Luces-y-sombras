@@ -18,6 +18,8 @@ func unlock():
 		
 func _on_button_pressed():
 	if(self.locked==false and Levelbase.passpoints > 0):
+		if (enemieNumber == 30):
+			Levelbase.final_level = true
 		Levelbase.get_node("Door").next_room = background
 		Levelbase.openthedoor()
 		self.unlock()

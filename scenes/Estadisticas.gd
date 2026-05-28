@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var my_player = get_node(str(multiplayer.get_unique_id()))
+@onready var my_player
 @onready var healthbar = $MarginContainer/VBoxContainer/Healthbar
 @onready var damage = $MarginContainer/VBoxContainer/Atack
 @onready var totalenemies = $MarginContainer/VBoxContainer/EneTotal

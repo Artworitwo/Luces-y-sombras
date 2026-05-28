@@ -7,7 +7,7 @@ extends Node2D
 var passpoints = 0
 var boss_health_bonus = 0
 var levels_cleared = 0
-
+var final_level = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	enemies_purified = 0
@@ -32,6 +32,9 @@ func record_death() -> void:
 func boss_defeated() -> void:
 	if !multiplayer.is_server(): return
 	print("La Diva ha sido derrotada")
+	if final_level == true:
+		show_win_screen.rpc()
+		return 
 	levels_cleared += 1
 	boss_health_bonus += 2
 	door.visible = true
@@ -73,6 +76,14 @@ func show_game_over_screen():
 	# Instanciamos la escena de Game Over
 	var game_over = preload("res://ui/GameOver.tscn").instantiate()
 	add_child(game_over)
+	# Opcional: pausar el juego para que nada se mueva atrás
+	get_tree().paused = true
+	
+@rpc("authority", "call_local", "reliable")
+func show_win_screen():
+	# Instanciamos la escena de Game Over
+	var win = preload("res://ui/Win.tscn").instantiate()
+	add_child(win)
 	# Opcional: pausar el juego para que nada se mueva atrás
 	get_tree().paused = true
 	

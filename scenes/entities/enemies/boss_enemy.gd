@@ -160,6 +160,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		STATE.DEATH:
 			if get_parent().get_parent().has_method("record_death"):
 				get_parent().get_parent().record_death()
+				
 				get_parent().get_parent().boss_defeated()
 			queue_free() 
 

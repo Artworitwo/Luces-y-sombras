@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://dflr05mvxootg"]
+
+[ext_resource type="Script" uid="uid://bgepoa125umkq" path="res://ui/game_over.gd" id="1_golqj"]
+[ext_resource type="Texture2D" uid="uid://6ae1xyv4itje" path="res://visual assets/Objects/MAIN MENU.png" id="2_vp1of"]
+
+[sub_resource type="FontVariation" id="FontVariation_cvna2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2b5w"]
+font = SubResource("FontVariation_cvna2")
+font_size = 100
+outline_size = 2
+shadow_size = 20
+shadow_color = Color(0.42203936, 0.5442606, 0.87774557, 0.63529414)
+
+[sub_resource type="FontFile" id="FontFile_cvna2"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_s2b5w"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+
+[node name="GameOver" type="Node2D" unique_id=1162705082]
+process_mode = 3
+script = ExtResource("1_golqj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=389403784]
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer" unique_id=1424340506]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0024787, 1.0080199)
+texture = ExtResource("2_vp1of")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1981516450]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.0
+offset_top = -103.5
+offset_right = 287.0
+offset_bottom = 103.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=2041426234]
+layout_mode = 2
+text = "YOU WIN!"
+label_settings = SubResource("LabelSettings_s2b5w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reboot" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=726772144]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_cvna2")
+theme_override_font_sizes/font_size = 50
+text = "Volver al inicio
+"
+
+[node name="Exit" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1423201343]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_s2b5w")
+theme_override_font_sizes/font_size = 50
+text = "Salir
+
+"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Reboot" to="." method="_on_reboot_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
