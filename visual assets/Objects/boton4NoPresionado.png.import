@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg4clhln7bckk"
-path="res://.godot/imported/MapTree.jpg-aff42f1883a21aa5bac0ef17c271c1b4.ctex"
+uid="uid://6dbvtjf24bab"
+path="res://.godot/imported/boton4NoPresionado.png-a4028597bac33cc4fe0fbb746c726f9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://visual assets/MapTree.jpg"
-dest_files=["res://.godot/imported/MapTree.jpg-aff42f1883a21aa5bac0ef17c271c1b4.ctex"]
+source_file="res://visual assets/Objects/boton4NoPresionado.png"
+dest_files=["res://.godot/imported/boton4NoPresionado.png-a4028597bac33cc4fe0fbb746c726f9c.ctex"]
 
 [params]
 

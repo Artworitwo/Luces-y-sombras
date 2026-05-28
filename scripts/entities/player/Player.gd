@@ -222,13 +222,23 @@ func boostall():
 func _on_synchronized() -> void:
 	if not cuerpos.is_empty():
 		_aplicar_cuerpo(cuerpo_actual)
+	if animated_sprite:
+		match current_state:
+			STATE.IDLE:   animated_sprite.play("idle") 
+			STATE.WALK:   animated_sprite.play("walk")
+			STATE.JUMP:   animated_sprite.play("jump")
+			STATE.CINEMATIC: animated_sprite.play("idle")
 		
 @rpc("any_peer", "call_local")
 func _sync_skin(index: int) -> void:
 	cuerpo_actual = index
 	_aplicar_cuerpo(index)
 	if animated_sprite:
-		animated_sprite.play("idle")
+		match current_state:
+			STATE.IDLE:   animated_sprite.play("idle")
+			STATE.WALK:   animated_sprite.play("walk")
+			STATE.JUMP:   animated_sprite.play("jump")
+			STATE.CINEMATIC: animated_sprite.play("idle")
 		
 @rpc("any_peer")
 func _solicitar_skins() -> void:

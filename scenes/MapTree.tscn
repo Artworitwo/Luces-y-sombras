@@ -1,14 +1,29 @@
 [gd_scene format=3 uid="uid://vkiqsxb83jtw"]
 
 [ext_resource type="Script" uid="uid://cjth262pmoftg" path="res://scripts/MapTree.gd" id="1_0iolm"]
-[ext_resource type="Texture2D" uid="uid://bg4clhln7bckk" path="res://visual assets/MapTree.jpg" id="2_leje1"]
+[ext_resource type="Texture2D" uid="uid://dkqtu4b8rs772" path="res://visual assets/MapTree.png" id="2_6poiu"]
 [ext_resource type="Texture2D" uid="uid://dxtf8555frfo2" path="res://visual assets/Objects/boton1NoPresionado.png" id="3_7glah"]
+[ext_resource type="Texture2D" uid="uid://6dbvtjf24bab" path="res://visual assets/Objects/boton4NoPresionado.png" id="3_hka5y"]
+[ext_resource type="Texture2D" uid="uid://fmr2pt51bsvn" path="res://visual assets/Objects/boton5NoPresionado.png" id="4_671xw"]
 [ext_resource type="Texture2D" uid="uid://d1glpunb1wcqf" path="res://visual assets/Objects/boton2NoPresionado.png" id="4_rberm"]
 [ext_resource type="Texture2D" uid="uid://b03edwcxdibf2" path="res://visual assets/Objects/boton3NoPresionado.png" id="5_6poiu"]
 
 [node name="MapTree" type="Node2D" unique_id=189906657]
 process_mode = 2
 script = ExtResource("1_0iolm")
+
+[node name="TextureRect2" type="ColorRect" parent="." unique_id=682317577]
+offset_left = -18.0
+offset_top = -78.0
+offset_right = 22.0
+offset_bottom = -33.0
+
+[node name="TextureRect3" type="ColorRect" parent="." unique_id=1790286161]
+offset_left = 44.14082
+offset_top = -107.36575
+offset_right = 127.484985
+offset_bottom = -59.365753
+rotation = 0.7414683
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=207667025]
 anchors_preset = 8
@@ -22,7 +37,25 @@ offset_right = 134.5
 offset_bottom = 142.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_leje1")
+texture = ExtResource("2_6poiu")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=1426797046]
+layout_mode = 0
+offset_left = -30.5
+offset_top = -77.5
+offset_right = 569.5
+offset_bottom = 417.5
+scale = Vector2(0.9200006, 0.8799994)
+texture = ExtResource("3_hka5y")
+
+[node name="img6" type="TextureRect" parent="TextureRect" unique_id=537056736]
+layout_mode = 0
+offset_left = -128.5
+offset_top = -194.5
+offset_right = 471.5
+offset_bottom = 300.5
+scale = Vector2(0.92, 0.96000004)
+texture = ExtResource("4_671xw")
 
 [node name="img1" type="TextureRect" parent="TextureRect" unique_id=2008768245]
 layout_mode = 0
@@ -120,18 +153,5 @@ offset_top = 4.5
 offset_right = 263.0
 offset_bottom = 37.0
 text = "X"
-
-[node name="TextureRect2" type="ColorRect" parent="." unique_id=682317577]
-offset_left = -18.0
-offset_top = -78.0
-offset_right = 22.0
-offset_bottom = -33.0
-
-[node name="TextureRect3" type="ColorRect" parent="." unique_id=1790286161]
-offset_left = 44.14082
-offset_top = -107.36575
-offset_right = 127.484985
-offset_bottom = -59.365753
-rotation = 0.7414683
 
 [connection signal="pressed" from="TextureRect/Button6" to="." method="_on_button_6_pressed"]
