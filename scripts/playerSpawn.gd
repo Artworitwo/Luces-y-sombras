@@ -5,6 +5,7 @@ extends MultiplayerSpawner
 func _ready() -> void:
 	#multiplayer.peer_connected.connect(_on_peer_connected)
 	CREATE.skin_recibida.connect(spawn_player)
+
 	
 	if multiplayer.is_server():
 		spawn_player(multiplayer.get_unique_id())
@@ -21,6 +22,7 @@ func spawn_player(id:int)-> void:
 	player.name = str(id)
 	player.set_multiplayer_authority(id)
 	player.cuerpo_actual = CREATE.skins_por_jugador.get(id, 0)
+	player.pelo_actual = CREATE.pelos_por_jugador.get(id, 0)
 	get_node(spawn_path).call_deferred("add_child", player)
 	_sync_skin_delayed.call_deferred(player)
 
@@ -29,7 +31,7 @@ func _sync_skin_delayed(player: Node) -> void:
 	await get_tree().process_frame
 	if is_instance_valid(player):
 		player._sync_skin.rpc(player.cuerpo_actual)
-	
+		player._sync_hair.rpc(player.pelo_actual)
 
 
 	

@@ -66,6 +66,7 @@ func check_death():
 	if get_node("SandCointainer").get_node(str(multiplayer.get_unique_id())).health <= 0:
 		# Enviamos la orden a todos (incluyendo clientes)
 		show_game_over_screen.rpc()
+		CREATE.stop_multiplayer()
 
 @rpc("authority", "call_local", "reliable")
 func show_game_over_screen():
