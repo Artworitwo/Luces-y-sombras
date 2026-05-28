@@ -147,7 +147,8 @@ listEnemy = ExtResource("6_841gl")
 minTimeSpawn = 2.0
 maxTimeSpawn = 4.5
 
-[node name="SpawnerBadTeacher" parent="SandCointainer" unique_id=591742020 instance=ExtResource("3_jguw4")]
+[node name="SpawnerBadTeacher" parent="SandCointainer" unique_id=591742020 groups=["spawners"] instance=ExtResource("3_jguw4")]
+_spawnable_scenes = PackedStringArray("uid://m4ycgwgaxw48")
 spawn_path = NodePath("..")
 listEnemy = ExtResource("13_d7gvg")
 minTimeSpawn = 4.0

@@ -144,6 +144,9 @@ properties/3/replication_mode = 1
 properties/4/path = NodePath("AnimatedSprite2D2:frame")
 properties/4/spawn = true
 properties/4/replication_mode = 1
+properties/5/path = NodePath("AnimatedSprite2D2:visible")
+properties/5/spawn = true
+properties/5/replication_mode = 1
 
 [node name="CharacterBody2D" type="Area2D" unique_id=329587886]
 collision_layer = 8

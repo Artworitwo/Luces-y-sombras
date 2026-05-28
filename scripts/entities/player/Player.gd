@@ -10,6 +10,10 @@ var cuerpo_actual: int = 0
 @onready var hitbox_attack = $HitBoxAttack
 @export var is_preview: bool = false
 
+var hairs: Array = []
+@export var pelo_actual: int = 0
+var animated_hair: AnimatedSprite2D
+
 var is_dead = false
 var health = 1
 var max_health: float = 5.0
@@ -27,14 +31,18 @@ func _ready() -> void:
 	await get_tree().process_frame
 
 	for s in find_children("*", "AnimatedSprite2D", true, false):
-		cuerpos.append(s as AnimatedSprite2D)
+		if s.get_parent().name == "Hairs":
+			hairs.append(s as AnimatedSprite2D)
+		else:
+			cuerpos.append(s as AnimatedSprite2D)
 
 	if cuerpos.is_empty():
 		push_error("No se encontraron los AnimatedSprite2D")
 		return
 
 	_aplicar_cuerpo(cuerpo_actual)
-
+	_aplicar_pelo(pelo_actual)
+	
 	if is_multiplayer_authority():
 		local_player = self
 
@@ -51,6 +59,7 @@ func _ready() -> void:
 	
 	if not multiplayer.is_server():
 		_solicitar_skins.rpc_id(1)
+		_solicitar_pelos.rpc_id(1)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -90,6 +99,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if animated_sprite:
 		animated_sprite.flip_h = (direction == -1)
+		animated_hair.flip_h = (direction == -1)
 
 func cambiar_estado(nuevo_estado):
 	current_state = nuevo_estado
@@ -101,6 +111,7 @@ func cambiar_estado(nuevo_estado):
 			animated_sprite.play("idle")
 		STATE.WALK:
 			animated_sprite.play("walk")
+			animated_hair.play("walk")
 		STATE.JUMP:
 			animated_sprite.play("jump")
 		STATE.DEATH:
@@ -115,7 +126,9 @@ func _sync_estado(estado: int) -> void:
 	if animated_sprite == null: return
 	match estado:
 		STATE.IDLE:   animated_sprite.play("idle")
-		STATE.WALK:   animated_sprite.play("walk")
+		STATE.WALK:   
+			animated_sprite.play("walk")
+			animated_hair.play("walk")
 		STATE.JUMP:   animated_sprite.play("jump")
 		STATE.CINEMATIC:
 			direction = 0
@@ -132,15 +145,17 @@ func procesar_movimiento():
 	velocity.x = direction * SPEED
 	if animated_sprite:
 		animated_sprite.flip_h = (direction == -1)
+		animated_hair.flip_h = (direction == -1)
 	if hitbox_attack:
 		hitbox_attack.scale.x = direction
-		hitbox_attack.position.x = -80 if direction == -1 else 0
+
 
 func morir_jugador():
 	is_dead = true
 	velocity = Vector2.ZERO
 	if animated_sprite:
 		animated_sprite.play("death")
+		animated_hair.play("death")
 		await animated_sprite.animation_finished
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://ui/GameOver.tscn")
@@ -162,8 +177,11 @@ func damage_enemy(enemy_path):
 func flash_damage():
 	if animated_sprite:
 		animated_sprite.modulate = Color(10, 1, 1)
+		animated_hair.modulate = Color(10, 1, 1)
+		
 		await get_tree().create_timer(0.15).timeout
 		animated_sprite.modulate = Color(1, 1, 1)
+		animated_hair.modulate = Color(1, 1, 1)
 
 func _on_hit_box_player_body_entered(body: Node2D) -> void:
 	if not is_multiplayer_authority(): return
@@ -173,6 +191,12 @@ func _on_hit_box_player_body_entered(body: Node2D) -> void:
 			health -= body.damage
 			print("Daño recibido: ", body.damage, " | Vida restante: ", health)
 			flash_damage()
+			if health <= 0:
+				animated_sprite.play("death")
+				animated_hair.play("death")
+				await animated_sprite.animation_finished
+				get_parent().get_parent().check_death()
+				queue_free()
 		else:
 			print("Error: El enemigo ", body.name, " no tiene variable 'damage'")
 
@@ -187,6 +211,16 @@ func _aplicar_cuerpo(index: int) -> void:
 	if cuerpos[index] != null:
 		cuerpos[index].visible = true
 		animated_sprite = cuerpos[index]
+		
+func _aplicar_pelo(index: int) -> void:
+	if hairs.is_empty() or index >= hairs.size():
+		return
+	for h in hairs:
+		if h != null:
+			h.visible = false
+	if hairs[index] != null:
+		hairs[index].visible = true
+		animated_hair = hairs[index]
 
 func cambiar_cuerpo(index: int) -> void:
 	var anim = "idle"
@@ -222,12 +256,8 @@ func boostall():
 func _on_synchronized() -> void:
 	if not cuerpos.is_empty():
 		_aplicar_cuerpo(cuerpo_actual)
-	if animated_sprite:
-		match current_state:
-			STATE.IDLE:   animated_sprite.play("idle") 
-			STATE.WALK:   animated_sprite.play("walk")
-			STATE.JUMP:   animated_sprite.play("jump")
-			STATE.CINEMATIC: animated_sprite.play("idle")
+	if not hairs.is_empty():
+		_aplicar_pelo(pelo_actual)
 		
 @rpc("any_peer", "call_local")
 func _sync_skin(index: int) -> void:
@@ -240,6 +270,13 @@ func _sync_skin(index: int) -> void:
 			STATE.JUMP:   animated_sprite.play("jump")
 			STATE.CINEMATIC: animated_sprite.play("idle")
 		
+@rpc("any_peer", "call_local")
+func _sync_hair(index: int) -> void:
+	pelo_actual = index
+	_aplicar_pelo(index)
+	if animated_hair:
+		animated_hair.play("idle")
+		
 @rpc("any_peer")
 func _solicitar_skins() -> void:
 	if not multiplayer.is_server(): return
@@ -247,3 +284,12 @@ func _solicitar_skins() -> void:
 	for hijo in get_parent().get_children():
 		if hijo is CharacterBody2D and hijo.has_method("_sync_skin"):
 			hijo._sync_skin.rpc_id(solicitante, hijo.cuerpo_actual)
+			
+@rpc("any_peer")
+func _solicitar_pelos() -> void:
+	if not multiplayer.is_server():
+		return
+	var solicitante = multiplayer.get_remote_sender_id()
+	for hijo in get_parent().get_children():
+		if hijo is CharacterBody2D and hijo.has_method("_sync_hair"):
+			hijo._sync_hair.rpc_id(solicitante, hijo.pelo_actual)

@@ -106,7 +106,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_42lir")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 4.0
 }, {
@@ -176,7 +176,6 @@ damage = 2
 position = Vector2(-1, -9)
 scale = Vector2(3.72, 3.8399994)
 sprite_frames = SubResource("SpriteFrames_mv5xj")
-animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3" unique_id=212037025]
 scale = Vector2(3.2800004, 2.6399999)
