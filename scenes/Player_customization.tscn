@@ -162,18 +162,18 @@ scale = Vector2(1.76, 1.5200002)
 text = "next"
 
 [node name="anteriorskin" type="Button" parent="." unique_id=822258603]
-offset_left = 221.0
-offset_top = -214.0
-offset_right = 293.0
-offset_bottom = -183.0
+offset_left = 68.0
+offset_top = -171.0
+offset_right = 140.0
+offset_bottom = -140.0
 scale = Vector2(1.3599988, 1.3600006)
 text = "anterior"
 
 [node name="siguientehaircolor2" type="Button" parent="." unique_id=1365206023]
-offset_left = 223.00003
-offset_top = 8.9999695
-offset_right = 295.00003
-offset_bottom = 39.99997
+offset_left = 78.99999
+offset_top = 29.000015
+offset_right = 151.0
+offset_bottom = 60.000015
 scale = Vector2(1.3599988, 1.3600006)
 text = "anterior"
 
@@ -197,8 +197,7 @@ text = "Color cabello"
 position = Vector2(-527, 0)
 scale = Vector2(12.5, 12.5)
 sprite_frames = SubResource("SpriteFrames_2mikx")
-animation = &"spawn"
-frame_progress = 0.25904176
+animation = &"walk"
 speed_scale = 2.3
 
 [node name="Darkskinedbody" type="AnimatedSprite2D" parent="." unique_id=983798665]
